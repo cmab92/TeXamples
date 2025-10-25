@@ -1,11 +1,6 @@
 % colormaps
 \usepgfplotslibrary{colorbrewer} % cf. https://tikz.dev/pgfplots/libs-colorbrewer
-%\usetikzlibrary{pgfplots.colormaps}
-%\def\mycolorscheme{RdGy}
-%\def\mycolorscheme{Spectral}
-%\def\mycolorscheme{RdYlBu}
-%\def\mycolorscheme{PiYG}
-\def\mycolorscheme{RdBu} % RdBu
+\def\mycolorscheme{RdYlBu}
 
 \pgfplotsset{colormap/\mycolorscheme-11} 
 
@@ -30,6 +25,10 @@
 \def\negmatcolor{\mycolorscheme-N}
 
 %
+\def\mylocalcolorproof{\mycolorscheme-I}
+\def\mylocalcolordef{\mycolorscheme-J}
+\def\mylocalcolortheo{\mycolorscheme-N}
+
 \def\urlcolor{\mycolorscheme-O}
 \def\linkcolor{\mycolorscheme-O}
 \def\citecolor{\mycolorscheme-A}
@@ -38,12 +37,16 @@
 \gdef\mycitationtextcolor{\mycolorscheme-B}
 \gdef\mychaptertitlecolor{\mycolorscheme-O}
 
-\usepackage{hyperref}
 \hypersetup{
 	linkcolor=\linkcolor,
 	citecolor=\citecolor,
 	urlcolor=\urlcolor,
 	colorlinks=true,
 }
+
+
+\gdef\mymathcolor{black}
+\everymath{\color{\mymathcolor}}       % inline math
+\everydisplay{\color{\mymathcolor}}    % display math
 
 \renewcommand\thefootnote{\sffamily\textcolor{\mysidenotetextcolor}{\arabic{footnote}}}

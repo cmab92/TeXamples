@@ -1,20 +1,13 @@
-
 \maketitle% this prints the handout title, author, and date
-
 % Second page
 \setlength{\parindent}{0pt}%
 \thispagestyle{empty}
-This document was typeset in \LaTeX~using the tufte-book document class. 
-\vspace{2cm}
+
+This document was typeset in \LaTeX~using the \texttt{tufte-book} document class. All packages being used can be found in the corresponding  \href{https://github.com/cmab92/TeXamples/tree/master/books/main.tex}{git-repository}. \\\newline 
 
 This document is licensed under the 
-\href{https://creativecommons.org/licenses/by/4.0/}{Creative Commons Attribution 4.0 International License (CC BY 4.0)}.
+\href{https://creativecommons.org/licenses/by/4.0/}{Creative Commons Attribution 4.0 International License (CC BY 4.0)}. \\\newline 
 
-This work was created with \LaTeX using the tufte-book document class., hyperref, cleveref, glossaries, etc.
-All packages are used under their respective licenses.
-
-Forwarding, publishing, or using this material for any purpose other than the intended internal use is not permitted.  
-All rights reserved.
 \vfill
 Christopher Bonenberger (2025) \titleofthesis \clearpage
 % Third page
@@ -22,25 +15,26 @@ Christopher Bonenberger (2025) \titleofthesis \clearpage
 \thispagestyle{empty}
 \vfill
 
-%Tag der Promotion: 
-% Fourth page
-\setlength{\parindent}{0pt}%
-\newpage\null
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Abstract
+%\section*{Danksagung}
 \thispagestyle{empty}
-\section*{Abstract}
-%\lipsum[1]
-\input{../src/texts/abstract.tex}
-% 6. page
 \setlength{\parindent}{0pt}%
-\newpage\null\thispagestyle{empty}\newpage
+\hfill %  Dedicated to ...
+\begin{fullwidth}
+		{\centering
+			\kitschy\LARGE Gott sei Dank ...\par
+		}
+\end{fullwidth}
+\setlength{\parindent}{0pt}%
+\cleardoublepage
 
-% thanks to
-%\setlength{\parindent}{0pt}%
-%\thispagestyle{empty}
-%\hfill %  Dedicated to ...
-%\pagenumbering{roman}
-% 8. page
-%\setlength{\parindent}{0pt}%
-%\newpage\null\thispagestyle{empty}\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Abstract}
+\thispagestyle{empty}
+\setlength{\parindent}{0pt}%
+\input{../src/texts/abstract.tex}  % man soll ja Redundanzen vermeiden ...
+
+\cleardoublepage

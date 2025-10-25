@@ -1,0 +1,55 @@
+The basic structures for citations, references, and the like are defined in the following files:
+\begin{itemize}
+	\item \texttt{settings/colorsettings.tex} \\ 
+	Among other things, this file defines the colors for all the different types of references. For example, this reference to \cref{sec:introduction} has the color \linebreak \verb|\linkcolor| (\cf \cref{fig:linkcolor}) due to:
+	\begin{marginfigure}[0cm]
+		\centering
+		\begin{tikzpicture}
+			\draw[fill=\linkcolor] (0, 0) rectangle ++(\marginparwidth,\marginparwidth/\goldenratio); 
+		\end{tikzpicture}\caption{The color \texttt{\linkcolor}.}\label{fig:linkcolor}
+	\end{marginfigure}
+	\begin{verbatim}
+		\def\mycolorscheme{RdYlBu}
+		...
+		\def\linkcolor{\mycolorscheme-O}
+		...
+		\hypersetup{
+			linkcolor=\linkcolor,
+			citecolor=\citecolor,
+			urlcolor=\urlcolor,
+			colorlinks=true,
+		}
+	\end{verbatim}
+	\item \texttt{settings/usebibentry.tex} \\ 
+	A relatively messy way to provide a programmable way to pull BibTeX info into the text (not necessarily as a formal reference).
+	
+	\item \texttt{../src/para/citecommands.tex} \\ 
+	Some more or less useful commands for citations and different kinds of quotes.
+	
+	\item \texttt{../src/para/nomenclature.tex} \\ 
+	In the simplest case, one would use such a file just to throw in all the \verb|\newcommand| for formula symbols, and the like. In this example, however, we go a bit further and equip everything with the corresponding hyperlinks and also generate a nomenclature. This allows the following\sidenote{Margin notes are also references and are assigned certain properties (font, color, \dots) in the aforementioned files. Just like references to equations or similar items. For example, a reference to the most beautiful equation in mathematics: \cref{eq:mostbeautifulequation}. Is it?}
+	\begin{equation}\label{eq:mostbeautifulequation}
+		\euler^{\complexunit\pi} - 1 = 0.
+	\end{equation}
+	Note that the symbols are linked to the nomenclature. Everything in the nomenclature is hand-crafted, although there are certainly various ready-made solutions available.
+	
+	\item \texttt{../src/para/glossary.tex} \\ 
+	Pretty much the same as for the nomenclature. Simply lets try by referencing to an \RKHS. Of course, we may also set the \verb|\hypertarget| to somewhere else (\eg to a corresponding mathematical definition).
+	
+	\item \texttt{../src/para/references} \\ 
+	Here, we add (literature) sources. Since the resulting section does not automatically appear in the \mytoc~ we need
+	\begin{verbatim}
+		\phantomsection
+		\addcontentsline{toc}{chapter}{Bibliography}
+	\end{verbatim}
+	followed by
+	\begin{verbatim}
+		\bibliographystyle{plainnat}
+		\bibliography{../src/para/references}
+	\end{verbatim}
+	Notably, \emph{before} using any literature-reference use:\\
+	\verb|\bibinput{../src/para/references}|
+	
+\end{itemize}
+
+So far, so good. Let’s turn to the next topic: citations.

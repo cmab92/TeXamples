@@ -1,48 +1,30 @@
-
-%\newcommand{\mycite}[1]{[\citeauthorname{#1}, \citepublicationyear{#1}]}
-%\newcommand{\mycitepage}[2]{[\citeauthorname{#1}, \citepublicationyear{#1}], p. {#2}}
-
 \newcommand{\mycite}[1]{\cite{#1}}
 \newcommand{\mycitepage}[2]{\cite{#1}, p. {#2}}
 
+\newcommand{\citesourcename}[1]{\usebibentry{#1}{title}}
 \newcommand{\citeauthorname}[1]{\citeauthor{#1}}
 \newcommand{\citepublicationyear}[1]{{\usebibentry{#1}{year}}}
-\newcommand{\citesay}[1]{\hfill \\---\citeauthor{#1}, \usebibentry{#1}{title}, \usebibentry{#1}{year}}
+\newcommand{\citesay}[1]{\hfill \\---\,\citeauthor{#1}, \usebibentry{#1}{title}, \usebibentry{#1}{year}}
 
-%\newcommand{\citeintextauthorname}[1]{\citeauthor{#1}\fullsidenotecite{#1}}
-%\newcommand{\fullsidenotecite}[1]{{\citesquarebrackets{#1}}}
-%\newcommand{\citepage}[2]{\citesquarebracketspage{#1}{#2}}
-%\newcommand{\sidecitepage}[2]{\citesquarebracketspage{1}{2}}
-%\newcommand{\citepublicationtitle}[1]{``{\usebibentry{#1}{title}}''}
+%% regarding epigraphs
+\setlength\epigraphwidth{.75\textwidth}
+\setlength\epigraphrule{0pt}
 
-
-
-
-%\newcommand{\fullsidenotecite}[1]{{\cite{#1}}}
-%\newcommand{\citepage}[2]{\citeauthor{#1}, p. {#2}}
-%\newcommand{\sidecitepage}[2]{\footnote{\citealt{#1}, p. {#2}}}
-%\newcommand{\citesay}[1]{\hfill \\---\citeauthor{#1}, \usebibentry{#1}{title}}
-%\newcommand{\citeauthorname}[1]{\citeauthor{#1}}
-%\newcommand{\citepublicationtitle}[1]{``{\usebibentry{#1}{title}}''}
-%\newcommand{\citepublicationyear}[1]{{\usebibentry{#1}{year}}}
-%\newcommand{\citeintextauthorname}[1]{\citeauthor{#1}\fullsidenotecite{#1}}
-%\newcommand{\citesquarebrackets}[1]{[\citeauthorname{#1} (\citepublicationyear{#1})]}
-%\newcommand{\citesquarebracketspage}[2]{[\citeauthorname{#1} (\citepublicationyear{#1})], p. {#2}}
+\let\originalepigraph\epigraph 
+\renewcommand\epigraph[2]%
+{\originalepigraph{\textit{\say{#1}}}{#2}}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+\newenvironment{mytextnarrowcite}
+{
+	\vspace{2mm}\begin{adjustwidth}{3em}{3em}} % customize the left and right margins here
+	{\end{adjustwidth}
+	\vspace{2mm}}
+	
+\newcommand{\myepigraphintext}[3]{
+	\vspace{2mm}
+	\begin{mytextnarrowcite}\label{#1}
+		{\small\textit{\say{#2}}} \small\citesay{#3}
+	\end{mytextnarrowcite}
+	\vspace{2mm}
+}

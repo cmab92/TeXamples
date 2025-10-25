@@ -1,0 +1,183 @@
+% theorem
+
+%\def\mylocalcolor{white}
+\def\mylocalopacval{20}
+\def\mylocalopacvalproof{10}
+\def\mylocalopacvaldef{20}
+\def\mylocalopacvaltheo{30}
+\def\mylocaltopskip{1cm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\makeatletter
+\DeclareDocumentCommand{\mdtheorem}{ O{} m o m o }%
+{\ifcsdef{#2}%
+	{\mdf@PackageWarning{Environment #2 already exits\MessageBreak}}%
+	{%
+		\IfNoValueTF {#3}%
+		{%#3 not given -- number relationship
+			\IfNoValueTF {#5}%
+			{%#3+#5 not given
+				\@definecounter{#2}%
+				\expandafter\xdef\csname the#2\endcsname{\@thmcounter{#2}}%
+				\newenvironment{#2}[1][]{%
+					\refstepcounter{#2}%
+					\ifstrempty{##1}%
+					{\let\@temptitle\relax}%
+					{%
+						\def\@temptitle{\mdf@theoremseparator%
+							\mdf@theoremspace%
+							\mdf@theoremtitlefont%
+							##1}%
+						\mdf@thm@caption{#2}{{#4}{\csname the#2\endcsname}{##1}}%
+					}%
+					\begin{mdframed}[#1,frametitle={\strut#4\ \csname the#2\endcsname%
+							\@temptitle}]}%
+					{\end{mdframed}}%
+				\newenvironment{#2*}[1][]{%
+					\ifstrempty{##1}{\let\@temptitle\relax}{\def\@temptitle{\mdf@theoremseparator\ ##1}}% <- the problem was here
+					\begin{mdframed}[#1,frametitle={\strut#4\@temptitle}]}%
+					{\end{mdframed}}%
+			}%
+			{%#5 given -- reset counter
+				\@definecounter{#2}\@newctr{#2}[#5]%
+				\expandafter\xdef\csname the#2\endcsname{\@thmcounter{#2}}%
+				\expandafter\xdef\csname the#2\endcsname{%
+					\expandafter\noexpand\csname the#5\endcsname \@thmcountersep%
+					\@thmcounter{#2}}%
+				\newenvironment{#2}[1][]{%
+					\refstepcounter{#2}%
+					\ifstrempty{##1}%
+					{\let\@temptitle\relax}%
+					{%
+						\def\@temptitle{\mdf@theoremseparator%
+							\mdf@theoremspace%
+							\mdf@theoremtitlefont%
+							##1}%
+						\mdf@thm@caption{#2}{{#4}{\csname the#2\endcsname}{##1}}%
+					}
+					\begin{mdframed}[#1,frametitle={\strut#4\ \csname the#2\endcsname%
+							\@temptitle}]}%
+					{\end{mdframed}}%
+				\newenvironment{#2*}[1][]{%
+					\ifstrempty{##1}%
+					{\let\@temptitle\relax}%
+					{%
+						\def\@temptitle{\mdf@theoremseparator%
+							\mdf@theoremspace%
+							\mdf@theoremtitlefont%
+							##1}%
+						\mdf@thm@caption{#2}{{#4}{\csname the#2\endcsname}{##1}}%
+					}%
+					\begin{mdframed}[#1,frametitle={\strut#4\@temptitle}]}%
+					{\end{mdframed}}%
+			}%
+		}%
+		{%#3 given -- number relationship
+			\global\@namedef{the#2}{\@nameuse{the#3}}%
+			\newenvironment{#2}[1][]{%
+				\refstepcounter{#3}%
+				\ifstrempty{##1}%
+				{\let\@temptitle\relax}%
+				{%
+					\def\@temptitle{\mdf@theoremseparator%
+						\mdf@theoremspace%
+						\mdf@theoremtitlefont%
+						##1}%
+					\mdf@thm@caption{#2}{{#4}{\csname the#2\endcsname}{##1}}%
+				}
+				\begin{mdframed}[#1,frametitle={\strut#4\ \csname the#2\endcsname%
+						\@temptitle}]}%
+				{\end{mdframed}}%
+			\newenvironment{#2*}[1][]{%
+				\ifstrempty{##1}{\let\@temptitle\relax}{\def\@temptitle{:\ ##1}}%
+				\begin{mdframed}[#1,frametitle={\strut#4\@temptitle}]}%
+				{\end{mdframed}}%
+		}%
+	}%
+}
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newenvironment{myoutline}
+{\mdfsetup{
+		frametitle={},
+		%		innertopmargin=10pt,
+		%		frametitleaboveskip=-\ht\strutbox,
+		%		frametitlealignment=\center
+	}
+	\begin{mdframed}%
+	}
+	{\end{mdframed}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\mdfdefinestyle{myStyle}{%
+	backgroundcolor=\mylocalcolor!\mylocalopacval, 
+	nobreak=true,
+	linewidth=0pt,
+	roundcorner=5pt,
+	innertopmargin=-0.5ex,
+}
+\mdfdefinestyle{myproofStyle}{%
+	%	backgroundcolor=\mylocalcolorproof!\mylocalopacvalproof, 
+	nobreak=false,
+	linewidth=0pt,
+	roundcorner=5pt,
+	innertopmargin=-0.5ex,
+	theoremseparator={ ---},
+	theoremspace=\space
+}
+\mdfdefinestyle{mydefStyle}{%
+	backgroundcolor=\mylocalcolordef!\mylocalopacvaldef, 
+	nobreak=true,
+	linewidth=0pt,
+	roundcorner=5pt,
+	innertopmargin=-0.5ex,
+}
+\mdfdefinestyle{mytheoStyle}{%
+	backgroundcolor=\mylocalcolortheo!\mylocalopacvaltheo, 
+	nobreak=true,
+	linewidth=0pt,
+	roundcorner=5pt,
+	innertopmargin=-0.5ex,
+}
+
+\mdtheorem[style=mydefStyle]{mydef}{Definition}
+\numberwithin{mydef}{chapter}
+
+\mdtheorem[style=myproofStyle]{myproof}{Proof}
+\numberwithin{myproof}{chapter}
+
+\mdtheorem[style=mytheoStyle]{mytheo}{Theorem}
+\numberwithin{mytheo}{chapter}
+
+\makeatletter
+\if@cref@capitalise
+\crefname{mydef}{Definition}{Definition}
+\crefname{mytheo}{Theorem}{Theorem}
+\crefname{myproof}{Proof}{Proof}
+\else
+\crefname{mydef}{definition}{definition}
+\crefname{mytheo}{theorem}{theorem}
+\crefname{myproof}{proof}{proof}
+\fi
+\makeatother
+
+%
+
+% proofs
+\newtheorem{myshortproof*}{Proof}
+\numberwithin{myshortproof*}{chapter} % important bit
+% examples
+\newtheorem{myexample}{Example}
+\numberwithin{myexample}{chapter} % important bit
+% lemma
+\newtheorem{mylemma}{Lemma}
+\numberwithin{mylemma}{chapter} % important bit
+
+
+
+%\usepackage{xpatch}
+%\xapptocmd{\appendix}{%
+	%	\numberwithin{mytheo}{section}
+	%	\numberwithin{mydef}{section}
+	%	\numberwithin{myproof}{section}
+	%	\numberwithin{mylemma}{section}
+	%	\numberwithin{myexample}{section}
+	%}{\typeout{Success}}{}

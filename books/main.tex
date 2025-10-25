@@ -1,8 +1,8 @@
 \documentclass[%
-notoc,	% i want that custom
 twoside,symmetric,	% main question: print-version or online-only?
 nols, % suppress letterspacing for small caps text
 a4paper, % ...
+notoc,	% i want that custom
 justified,	% unusual for tufte-book! Anyway ...
 nobib, % custom references
 ]{tufte-book} % 
@@ -19,61 +19,90 @@ nobib, % custom references
 \usepackage{pgfplots} % :)
 \usepackage{amsmath,amssymb,amsfonts,amsthm,mathrsfs,mathtools} % Regarding equstions
 \usepackage[utf8]{luainputenc}	% LuaLaTex!
-\usepackage{hyperref} % references, citations, URLs, and table of contents clickable in PDF
 \usepackage[capitalize,nameinlink,noabbrev]{cleveref} % simplifies \ref usage and improves formatting
-\usepackage[english,ngerman]{babel} % mainly for correct word-breaking 
 \usepackage[framemethod=tikz]{mdframed} % boxes (e.g. for theorems, definitions, etc.)
 \usepackage{emoji} % just for fun
 \usepackage{lipsum} % blind text
 \usepackage{psvectorian} % just for fun
+\usepackage{tabto}
 \usepackage{dirtytalk}	% mainly \say command
-\usepackage[acronym, toc]{glossaries} % Well... glossaries :)
-\makeglossaries
+\usepackage{ifthen} % ... e.g. for more complicated plots
+\usepackage{romannum}	% ...
+\usepackage{array,readarray}	% read arrays
+\usepackage{siunitx}	% ...
+\usepackage{epigraph}	% just for fun
+\usepackage{fourier}
 
-%% Regarding bib
+%% Language
+\usepackage[ngerman,english]{babel} % mainly for correct word-breaking (the last-mentioned is dominant, e.g. Contents instead of Inhaltsverzeichnis)
+
+%% Regarding bibliography
 \usepackage{natbib}
 \usepackage{bibentry}
 \nobibliography*
+
+%% Links (include after natbib for use in bibliography)
+\usepackage{hyperref} % references, citations, URLs, and table of contents clickable in PDF
+\usepackage{url}
 
 %% Regarding pgfplots and tikz
 %\usetikzlibrary{external}
 %\tikzexternalize[prefix=tikz/]
 \usetikzlibrary{calc,arrows,arrows.meta,angles,quotes,plotmarks,fadings,shapes,spy,mindmap,backgrounds}
-\usepgfplotslibrary{fillbetween}
+\usepgfplotslibrary{colorbrewer,fillbetween}
 \pgfplotsset{compat=newest}
 
-%
+%% Regarding TOC
+\setcounter{secnumdepth}{2} % activate section and chapter numbering
+\setcounter{tocdepth}{1} % section and chapter number-depth in TOC
+
 \input{settings/colorsettings.tex}
 \input{settings/fontsettings.tex}
+\input{settings/pagestyle.tex}
+\input{settings/usebibentry.tex}
 \input{../src/para/citecommands.tex}
+\input{../src/para/misccommands.tex}
+\input{../src/para/theoremproofexample.tex}
 \input{paratext/titlecontent.tex}
 
 \begin{document}
-%	\bibinput{references}
-	
+	% Frontmatter
 	\input{paratext/frontmatter.tex}
+	
+	% Nomenclature & Glossary
 	\input{../src/para/nomenclature.tex}
 	\input{../src/para/glossary.tex}
-	% gloss
-	\printglossaries
-	% toc
-	\sffamily
+	
+	
+	%% TOC
+	\sffamily % sans serif
 	\tableofcontents
-%	\input{settings/citecommands.tex}
-%	\cleardoublepage
-%	\pagestyle{mystyle}	
-%	\setcounter{page}{1}
-%	\pagenumbering{arabic}
-%	\normalfont
-%	
-%	\chapter{Lists, indexes, paratext and auxiliary apparatus}
-%	\section[Glossary]{Glossary}
-%	\input{sections/regarding_glossary.tex}
-%	\chapter[Introduction]{Introduction}
-%	\input{introduction.tex}
-%	
-%	%		\addcontentsline{toc}{section}{Bibliography}
-%	\bibliography{../src/refs/references}
-%	\bibliographystyle{plainnat}
+	\normalfont % back to normal
+	\cleardoublepage
+	
+	% Document body
+	\bibinput{../src/para/references}
+	\pagestyle{mystyle}	
+	\setcounter{page}{1}
+	\pagenumbering{arabic}
+	
+	\chapter{Introduction}\label{sec:introduction}
+		\input{../src/texts/introduction.tex}
+
+	\chapter[Quotes \& References]{Quotations, Citations and \\ References of All Kinds}
+		\input{../src/texts/quotesreferences.tex}
+		\section[References]{References of All Kinds}
+		\input{../src/texts/referencesofallkinds.tex}
+		\section[The Cost of Ink?]{The Cost of Ink?}
+			\input{../src/texts/costofink.tex}
+	\chapter[Anything Goes]{Anything Goes}
+		\input{../src/texts/anythinggoes.tex}
+			
+	
+	\cleardoublepage % move to new page
+	\phantomsection % create a target for hyperref
+	\addcontentsline{toc}{chapter}{Bibliography}
+	\bibliographystyle{plainnat}
+	\bibliography{../src/para/references}
 	
 \end{document}
