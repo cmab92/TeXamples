@@ -1,0 +1,16 @@
+# LaTeX intermediate / auxiliary files
+*.aux
+*.log
+*.toc
+*.out
+*.lof
+*.lot
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.nav
+*.snm
+*.vrb
+
+# PDF output (optional: if you want to commit PDFs, remove this)
+*.pdf

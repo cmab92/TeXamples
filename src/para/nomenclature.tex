@@ -1,0 +1,913 @@
+\vspace{1cm}
+{{\mysectionfont{Nomenclature}}}\newline
+\vspace{1cm}
+\normalsize\newline
+\thispagestyle{empty}
+
+% As a start
+\newcommand{\hilbertspace}{\mathcal{H}}%
+%$\hilbertspace$ \tab Hilbert space of functions \newline
+% 
+\newcommand{\circconv}{\circledast}	% circular convolution
+%$\circconv$ \tab Operator for circular convolution\newline
+% 
+\newcommand{\hadamard}{\odot}	% circular convolution
+%$\hadamard$ \tab Hadamard product (pointwise multiplication)\newline
+% 
+\newcommand{\linconv}{\ast}	% linear convolution
+% 
+\newcommand{\singlenoisesample}{\varepsilon} 
+\newcommand{\noisesample}[1]{\singlenoisesample_{#1}}
+%$\noisesample{i}$ \tab A noise sample at (time) index $i$ \newline
+% 
+\newcommand{\maorder}{Q}
+%$\maorder$ \tab Order of a moving average process \newline
+% 
+\newcommand{\arorder}{P}
+% 
+\newcommand{\maprocess}[1]{\textup{MA}(#1)}
+%$\maprocess{\maorder}$ \tab Moving average process of order $\maorder$ \newline
+% 
+\newcommand{\maweigths}[1]{b_{#1}}
+%$\maweigths{0}, \dots, \maweigths{\maorder-1}$ \tab Weights of a $\maprocess{\maorder}$ process \newline
+%
+\newcommand{\dplmo}{M}
+\newcommand{\arweigths}[1]{a_{#1}}
+%
+\newcommand{\maweigthvec}{\mathbf{b}}
+%$\maweigthvec$ \tab Weight vector of a $\maprocess{\maorder}$ process \newline
+%
+\newcommand{\maprocmat}{\mathbf{B}}
+%
+\newcommand{\outcomespace}{\mathcal{W}}
+%$\outcomespace$ \tab Sample space (set of outcomes) \newline
+%
+\newcommand{\eventspace}{\mathscr{W}}
+%$\eventspace$ \tab Event space (a $\sigma$-algebra on $\outcomespace$) \newline
+%
+\newcommand{\eventsubspace}{W}
+%$\eventsubspace$ \tab Subspace of $\eventspace$ \newline
+%
+\newcommand{\measure}{\mu}
+%$\measure$ \tab A measure \newline
+%
+\newcommand{\probmeasure}{P}
+%$\probmeasure$ \tab A probability measure \newline
+%
+\newcommand{\probparam}{\omega}
+%$\probparam$ \tab Events ($\probparam\in\eventspace$) \newline
+%
+\newcommand{\realization}{X}
+%$\realization_t$ \tab Realization of a stochastic process \newline
+%
+\newcommand{\statespace}{S}
+%$\statespace$ \tab State space (of values $\realization_t$ may take) \newline
+%
+\newcommand{\statespacealgebra}{\mathscr{S}}
+%$\statespacealgebra$ \tab $\sigma$-algebra of $\statespace$ \newline
+%
+\newcommand{\timeindexset}{\mathbb{T}}
+%$\timeindexset$ \tab Index set (associated with time) \newline
+%
+\newcommand{\timeindex}{t}
+%
+\newcommand{\stochasticprocess}{\realization(\timeindex, \probparam)}
+\newcommand{\anotherstochasticprocess}{Y(\timeindex, \probparam)}
+%$\stochasticprocess$ \tab A stochastic process \newline
+%
+\newcommand{\discretestochastocprocess}{\stochasticprocess}
+%
+\newcommand{\dspfixtimecomp}[1]{\realization_{#1}(\probparam)}
+\newcommand{\dsptimeseries}[1]{\realization_{#1}(\timeindex)}
+\newcommand{\dspallfix}[2]{\realization_{#1, #2}}
+\newcommand{\otherdspfixtimecomp}[1]{Y_{#1}(\probparam)}
+\newcommand{\otherdsptimeseries}[1]{Y_{#1}(\timeindex)}
+\newcommand{\otherdspallfix}[2]{Y_{#1, #2}}
+\newcommand{\dsptssimplecomp}[1]{\realization_{#1}}
+\newcommand{\dsptssimpleprocessreal}[1]{\{\realization_{#1}\}_{{#1}\in\integers}}
+%
+\newcommand{\uniformdistr}[2]{\mathcal{U}\left(#1, #2\right)}
+%
+\newcommand{\gaussiandistr}[2]{\mathcal{N}\left(#1, #2\right)}
+%
+\newcommand{\borelsigma}[1]{\mathcal{B}(#1)}
+%$\borelsigma{X}$ \tab Borel $\sigma$-algebra on $X$ \newline
+%
+\newcommand{\samplingfreq}{\gamma_s}
+%
+\newcommand{\rect}[1]{{\textup{rect}}\left(#1\right)}
+%$\rect{1}$ \tab Rectangular pulse with width $1$\newline
+%
+\newcommand{\sampletime}{\tau_s}
+%
+\newcommand{\ftransform}[1]{\hat{#1}}
+%
+\newcommand{\truncation}[1]{\underline{#1}}
+%$\truncation{f}$ \tab Truncated $f$ \newline
+%
+\newcommand{\fourieroperator}{\mathcal{F}}
+%$\fourieroperator$ \tab Fourier operator \newline
+%
+\newcommand{\basicperiod}{T}
+\newcommand{\paleywiener}{\textup{PW}}
+%$\paleywiener$ \tab Paley-Wiener space \newline
+%
+\newcommand{\support}[1]{{\textup{supp}}\left\{#1\right\}}
+%$\support{f}$ \tab Support of $f$ \newline
+%
+\newcommand{\bandlimit}{B}
+%$\bandlimit$ \tab Bandwidth \newline
+%
+\newcommand{\freqindex}{\gamma}
+%
+\newcommand{\angfreq}{\omega}
+%$\angfreq$ \tab $2\pi\freqindex$ \newline
+%
+\newcommand{\freqindexdiscrete}{k}
+%$\freqindexdiscrete$ \tab Discrete frequency index \newline
+%
+\newcommand{\percon}[1]{{#1}}
+%$\percon{f}$ \tab periodic continuation of $f$ \newline
+%
+\newcommand{\complexnr}{\mathfrak{i}}
+% 
+\newcommand{\frameveccomp}{{\phi}}
+%$\frameveccomp$ \tab Component of a frame vector \newline
+% 
+\newcommand{\dualframeveccomp}{\widetilde{\phi}}
+%$\frameveccomp$ \tab Component of a (dual) frame vector \newline
+% 
+\newcommand{\frameset}{\Phi}
+%$\frameset$ \tab Set of frame vectors\newline
+%
+\newcommand{\dualframeset}{\widetilde{\Phi}}
+%$\dualframeset$ \tab Set of (dual) frame vectors\newline
+% 
+\newcommand{\framevec}{\mathbf{\boldsymbol{\frameveccomp}}}
+%$\framevec$ \tab An element of a frame \newline
+% 
+\newcommand{\dualframevec}{\boldsymbol{\dualframeveccomp}}
+%$\dualframevec$ \tab An element of a (dual) frame \newline
+% 
+\newcommand{\myframe}{\boldsymbol{\frameset}}
+%$\myframe$ \tab A frame \newline
+% 
+\newcommand{\mymvfana}{\boldsymbol{\frameset}^\transp}
+%$\mymvfana$ \tab Maximum Variance Frame (Syn. Op.) \newline
+% 
+\newcommand{\mymvf}{\boldsymbol{\frameset}}
+%
+\newcommand{\mydualmvf}{\boldsymbol{\dualframeset}}
+% 
+\newcommand{\mydualframe}{\boldsymbol{\dualframeset}}
+%$\mydualframe$ \tab A (dual) frame \newline
+%
+\newcommand{\anaoperator}[1]{{#1}^\mathsf{H}}
+%$\anaoperator{\mathbf{A}}$ \tab Analysis operator \newline
+% 
+\newcommand{\synoperator}[1]{{#1}}
+%$\synoperator{\mathbf{A}}$ \tab Synthesis operator \newline
+% 
+\newcommand{\coeffvec}{\mathbf{y}}
+%$\coeffvec$ \tab coefficient vector \newline
+% 
+\newcommand{\framedec}[1]{\coeffvec_{#1}}
+%$\coeffvec$ \tab \newline
+% 
+\newcommand{\framerec}[1]{\obs_{#1}}
+%$\coeffvec$ \tab \newline
+% 
+\newcommand{\coeff}{y}
+%$\coeff$ \tab Single coefficient\newline
+% 
+\newcommand{\frameoperator}{\boldsymbol{\Theta}}
+%$\frameoperator$ \tab A frame operator\newline
+% 
+\newcommand{\frameindexset}{\mathcal{I}}
+%$\frameindexset$ \tab Frame index set \newline
+% 
+\newcommand{\rayleigh}{\textup{R}}
+%$\rayleigh$ \tab Rayleigh quotient \newline
+% 
+\newcommand{\eigvals}{\lambda}
+\newcommand{\eigval}{\lambda}
+%$\eigvals$ \tab Eigenvalue\newline
+% _{\textup{min}}
+\newcommand{\eigvalmat}{\boldsymbol{\Lambda}}
+%$\eigvalmat$ \tab Eigenvalue matrix\newline
+% _{\textup{min}}
+\newcommand{\eigvecmat}{\boldsymbol{\Gamma}}
+%$\eigvecmat$ \tab Eigenvector matrix\newline
+% _{\textup{min}}
+\newcommand{\framebounds}{\uplambda}
+%$\framebounds$ \tab Frame bounds\newline
+% _{\textup{min}}
+\newcommand{\upperframebound}{\framebounds_{\textup{max}}}
+%$\upperframebound$ \tab Upper frame bound\newline
+% 
+\newcommand{\lowerframebound}{\framebounds_{\textup{min}}}
+%$\lowerframebound$ \tab Lower frame bound\newline
+% 
+\newcommand{\parsevalframeindex}{{}}%{\mathsf{P}} 
+\newcommand{\parsevalframeset}{\frameset_\parsevalframeindex}
+\newcommand{\parsevalframe}{\myframe_\parsevalframeindex} 
+%
+\newcommand{\largesteigval}{\eigvals_{\textup{max}}}
+%$\largesteigval$ \tab Largest eigenvalue\newline
+% 
+\newcommand{\smallesteigval}{\eigvals_{\textup{min}}}
+%$\smallesteigval$ \tab Smallest eigenvalue\newline
+% 
+\newcommand{\zerovec}{\mathbf{0}}
+% 
+\newcommand{\zeromat}{\mathbf{0}}
+% 
+\newcommand{\data}{\mathbf{X}}	%
+% 
+%% SSA
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+\newcommand{\delaysymbol}{\mathfrak{d}}
+\newcommand{\delayrep}{\acute{\mathbf{X}}}	%
+%$\delayrep$ \tab Hankel representation of a time series\newline
+%
+\newcommand{\etsubset}{{\scriptscriptstyle{\mathcal{S}}}}
+%$\etsubset$ \tab Subset of eigentriples\newline
+%
+\newcommand{\lowrankapproxssa}[1]{{\mathbf{X}}_{\etsubset_{#1}}}	%
+%$\lowrankapproxssa{i}$ \tab Low rank approximation based on $\etsubset_i$ \newline
+%
+\newcommand{\lowrankapproxhankel}[1]{\acute{{\mathbf{X}}}_{\etsubset_{#1}}}	%
+%$\lowrankapproxssa{i}$ \tab Low rank approximation (``hankelized'') \newline
+%
+\newcommand{\ssarecet}[1]{{\mathbf{y}}_{\etsubset_{#1}}}	%
+%$\ssarecet{i}$ \tab SSA reconstruction from eigentriple \newline
+%
+\newcommand{\embeddim}{L}
+%$\embeddim$ \tab Embedding dimension\newline
+%
+\newcommand{\embeddelay}{\rho}
+%$\embeddelay$ \tab Embedding delay (``stride'')\newline
+%
+\newcommand{\embedoperator}{\mathscr{E}}
+%$\embedoperator$ \tab Embedding operator\newline
+%
+\newcommand{\numofembedshifts}{M}
+%$\numofembedshifts$ \tab Number of shifts in delay embedding\newline
+%
+\newcommand{\obsembedded}{\acute{{\obs}}}
+%% KPCA
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\featuremap}{\varphi}
+%% DPCA
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\dataaug}{\grave{\mathbf{X}}}	%
+%$\dataaug$ \tab An augmented data set\newline
+% \lagsdpca
+\newcommand{\lagsdpca}{L}	%
+%$\lagsdpca$ \tab Number of lags (DPCA)\newline
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\newcommand{\pc}{\mathbf{u}}	%  
+%$\pc$ \tab Principal component (PCA)\newline
+%
+\newcommand{\myseconds}[1]{\SI{#1}{\second}}
+%\myseconds{2} \tab 2 seconds\newline
+%
+\newcommand{\myfrequency}[1]{\SI{#1}{\hertz}}
+%\myfrequency{2} \tab 2 Hertz\newline
+%
+\newcommand{\pcbase}{\mathbf{U}}	%  
+%$\pcbase$ \tab Principal basis (PCA)\newline
+%
+\newcommand{\redpcbase}[1]{\mathbf{U}_{#1}}
+%$\redpcbase{Q}$ \tab Reduced principal basis (PCA)\newline
+%
+\newcommand{\numobs}{N}	% 
+%$\numobs$ \tab Number of observations\newline
+%
+\newcommand{\numatoms}{Q}	% 
+%$\numatoms$ \tab Number of atoms\newline
+%
+\newcommand{\atomidx}{q}	% 
+%$\atomidx$ \tab Atom index\newline
+%
+\newcommand{\numredatoms}{Q}	% 
+%$\numredatoms$ \tab Number of (red.) dimensions\newline
+%
+\newcommand{\redatomidx}{q}	% 
+%$\redatomidx$ \tab Dim. Red. index\newline
+%
+\newcommand{\CM}{\mathbf{C}}	% 
+%$\CM$ \tab A circulant matrix \newline
+%
+\newcommand{\ckc}{c}	% 
+%$\ckc$ \tab Component of kernel of $\CM$ \newline
+%
+\newcommand{\ck}{\mathbf{c}}	% 
+%$\ck$ \tab Mask of circulant matrix \newline
+%
+\newcommand{\permat}{\mathbf{P}}	% permutation matrix
+%$\permat$ \tab Permutation matrix \newline
+%
+\newcommand{\ddim}{D}	% data dimensionality
+%$\ddim$ \tab Data dimensionality \newline
+%
+\newcommand{\myresolution}{R}	% 
+%$\myresolution$ \tab Resolution (of PSD estimate) \newline
+%
+\newcommand{\transpose}[1]{{#1}^\mathsf{T}}
+\newcommand{\transp}{\mathsf{T}}
+%
+\newcommand{\hermet}[1]{{#1}^\mathsf{H}}
+\newcommand{\herm}{\mathsf{H}}
+%
+\newcommand{\invert}{\mathsf{-1}}
+\newcommand{\invers}[1]{{#1}^\invert}
+%
+%
+\newcommand{\pinv}[1]{{#1}^\dagger}
+%
+\newcommand{\diagmat}{\boldsymbol{\Lambda}}
+%
+\newcommand{\approximation}[1]{\tilde{#1}}
+%$\approximation{\mathbf{A}}$ \tab Approximation of $\mathbf{A}$\newline
+%
+\newcommand{\rank}[1]{\textup{rank}\left\{#1\right\}}
+%
+\newcommand{\linearspan}[1]{\textup{span}\left\{#1\right\}}
+%$\rank{\mathbf{x}}$ \tab Span / Linear hull of $\mathbf{x}$\newline
+%
+\newcommand{\fmat}{\mathbf{F}}	% fourier matrix
+%
+\newcommand{\lefteigvecs}{\mathbf{U}}	% fourier matrix
+%
+\newcommand{\lefteigvec}{\mathbf{u}}	% fourier matrix
+
+\newcommand{\empcovar}{\boldsymbol{\Sigma}}
+%
+\newcommand{\singvals}{\boldsymbol{\Sigma}}	% fourier matrix
+%
+\newcommand{\singval}{{\sigma}}	% fourier matrix
+%
+\newcommand{\righteigvecs}{\mathbf{V}}	% fourier matrix
+%
+\newcommand{\righteigvec}{\mathbf{v}}	% fourier matrix
+%
+\newcommand{\righteigveccomp}{{v}}	% fourier matrix
+%
+\newcommand{\squarederror}{\epsilon}	% fourier matrix
+%$\squarederror$ \tab Error term\newline
+%
+\newcommand{\trace}[1]{\textup{Tr}\left\{#1\right\}}	% fourier matrix
+%
+\newcommand{\identity}{\mathbf{I}}	% fourier matrix
+%
+\newcommand{\identityvec}[1]{\mathbf{i}_{#1}}	% fourier matrix
+%
+\newcommand{\onesmatrix}{\mathbf{1}}
+\newcommand{\fmode}{\mathbf{f}}	% fourier matrix
+%
+\newcommand{\fmatcomp}{f}	% fourier matrix
+%
+\newcommand{\euler}{e}
+%
+\newcommand{\idxc}{i}
+%$\idxc$ \tab Some index... \newline
+%
+\newcommand{\idxa}{j}
+%$\idxa$ \tab Some index... \newline
+%
+\newcommand{\didx}{\nu}
+%$\didx$ \tab Data index\newline
+%
+\newcommand{\idxb}{k}
+%$\idxb$ \tab Some index... \newline
+%
+\newcommand{\matsep}{,}
+%$\matsep$ \tab Matrix / Vector index separator \newline
+%
+\newcommand{\diag}[1]{{\textup{diag}}\left\{#1\right\}}	% 
+\newcommand{\smalldiag}[1]{{\textup{diag}}\{#1\}}	% 
+%$\diag{\CM}$ \tab Diagonal elements of $\CM$ \newline
+%
+\newcommand{\magicweightcomp}{{w}}
+%$\magicweightcomp$ \tab Flat-top triangle component\newline
+%
+\newcommand{\magicweight}{\mathbf{w}}
+%$\magicweight$ \tab Flat-top triangle\newline
+%
+\newcommand{\magicweightmat}{\diagmat_\mathbf{w}}
+%$\magicweightmat$ \tab Diagonal matrix carrying $\mathbf{w}$ \newline
+%
+\newcommand{\magicweightmatinv}{\diagmat^\invert_\mathbf{w}}
+%$\magicweightmat$ \tab Diagonal matrix carrying $\mathbf{w}$ \newline
+%
+\newcommand{\eigenfiltermat}{\mathbf{T}}
+%$\eigenfiltermat$ \tab FIR-Toeplitz (SSA)\newline
+%
+\newcommand{\diagavgop}{\mathscr{H}}
+%
+\newcommand{\epower}[1]{\textit{e}^{#1}}	% 
+% 
+\newcommand{\Ltwo}{{\textup{L}^2}}
+%$\Ltwo(\mathbb{R})$ \tab Space of square-integrable functions \newline
+% 
+\newcommand{\Lone}{{\textup{L}^1}}
+%$\Lone(\mathbb{R})$ \tab Space of absolutely-integrable functions \newline
+% 
+\newcommand{\ellp}{{\mathcal{L}^p}}
+%$\ellp$ \tab ... \newline
+%
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+%
+\newcommand{\normsmall}[1]{\lVert#1\rVert}
+%
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\abssmall}[1]{\lvert#1\rvert}
+%
+\newcommand{\conjugate}[1]{\overline{#1}}
+%
+\newcommand{\myspan}[1]{\textup{span}\left\{#1\right\}}
+%
+\newcommand{\nonemptyset}{\mathcal{X}}
+%$\nonemptyset$ \tab A non-empty set \newline 
+%
+\newcommand{\nonemptysalgebra}{\mathscr{X}}
+%$\nonemptysalgebra$ \tab A $\sigma$-algebra for $\nonemptyset$ \newline 
+%
+\newcommand{\somevectorspace}{\nonemptyset}
+%$\somevectorspace$ \tab Some vector space \newline 
+%
+\newcommand{\someothervectorspace}{\mathcal{N}}
+%$\someothervectorspace$ \tab Some other vector space \newline 
+%
+\newcommand{\fseriescoeffs}{a}
+%$\fseriescoeffs$ \tab Fourier series coefficients \newline 
+%
+\newcommand{\rootsofunity}{z}
+%$\rootsofunity$ \tab A root of unity\newline 
+% 
+\newcommand{\realnumbers}{\mathbb{R}}
+% 
+\newcommand{\posrealnumbers}{\mathbb{R}_+}
+% 
+\newcommand{\complexnumbers}{\mathbb{C}}
+% 
+\newcommand{\somefield}{\mathbb{K}}
+%$\somefield$ \tab $\realnumbers$ or $\complexnumbers$ \newline
+%
+\newcommand{\signalenergy}{E}
+%$\signalenergy$ \tab Signal energy\newline
+%
+\newcommand{\metric}{\mathfrak{d}}
+%$\metric$ \tab Metric\newline
+%
+\newcommand{\hilbertspacebasis}{\mathbf{e}}
+%$\hilbertspacebasis$ \tab A basis vector of some $\hilbertspace$ \newline
+%
+\newcommand{\almosteverywhere}{\textup{a.e.}}
+%$\almosteverywhere$\tab almost everywhere \newline
+%
+\newcommand{\realpart}[1]{\Re{\left\{#1\right\}}}
+%
+\newcommand{\noisevec}{\boldsymbol{\singlenoisesample}}	% 
+%$\noisevec$ \tab Noise vector \newline
+%
+\newcommand{\signalvec}{\boldsymbol{s}}	% 
+%$\signalvec$ \tab Signal vector \newline
+%
+\newcommand{\noisevariance}{\sigma_\singlenoisesample^2}
+\newcommand{\empcovmat}{\mathbf{S}}	% 
+%$\empcovmat$ \tab Empirical covariance matrix \newline
+%
+\newcommand{\kernelmat}{\mathbf{K}}	% 
+\newcommand{\kernelmatcent}{\kernelmat_c}
+%$\kernelmat$ \tab Kernel matrix \newline
+%
+\newcommand{\meanvec}{\boldsymbol{\mu}}	%
+%$\meanvec$ \tab Mean vector \newline
+%
+\newcommand{\covmat}{\boldsymbol{\Sigma}}	%
+%$\covmat$ \tab Covariance matrix \newline
+%
+\newcommand{\covariance}[2]{{\sigma}_{#1\matsep #2}}	%
+%$\covariance{i}{j}$ \tab $[\covmat]_{i\matsep j}$ \newline
+%
+\newcommand{\kronecker}[2]{{\delta}_{#1 #2}}	%
+%
+\newcommand{\deltafct}[1]{{\delta}_{#1}}	%
+%$\deltafct{i-j}$ \tab Dirac function \newline
+%
+\newcommand{\sqrtcovmat}{\covmat^{\sfrac{1}{2}}}	%
+%$\sqrtcovmat$ \tab Square root of covariance matrix \newline
+%
+\newcommand{\expectation}[1]{\mathbb{E}\left\{#1\right\}}	%
+%
+\newcommand{\imagpart}[1]{\Im{\left\{#1\right\}}}
+%
+\newcommand{\sinc}[1]{\textup{sinc}\left(#1\right)}
+%$\sinc{x}$\tab $\sinc{x} = \sfrac{\sin(x)}{x}$ \newline
+%
+\newcommand{\schwartzspace}{\mathcal{S}}
+%$\schwartzspace$ \tab Schwartz space \newline
+%
+\newcommand{\rkhs}{\mathcal{H}}
+%$\rkhs$ \tab Reproducing kernel Hilbert space \newline
+%
+\newcommand{\kernelfunction}{k}
+%$\kernelfunction$ \tab Kernel function \newline
+%
+\newcommand{\nonlinfeatmap}{\phi}
+%$\nonlinfeatmap$ \tab Feature map \newline
+%
+\newcommand{\cinfinity}{\mathcal{C}^{\infty}}
+%$\cinfinity$ \tab Class of infinitely often \newline \textcolor{white}{tab} \tab differentiable functions \newline
+%
+\newcommand{\naturalswithzero}{\mathbb{N}_0}
+%$\naturalswithzero$ \tab $\naturalswithzero = \left\{\mathbb{N}\cup 0\right\}$ \newline
+%
+\newcommand{\naturals}{\mathbb{N}}
+%
+\newcommand{\integers}{\mathbb{Z}}
+%$\naturalswithzero$ \tab $\naturalswithzero = \left\{\mathbb{N}\cup 0\right\}$ \newline
+%
+\newcommand{\evec}{\mathbf{v}}
+%$\evec$ \tab Eigenvector \newline
+%
+\newcommand{\evecc}{{v}}
+%$\evecc$ \tab Component of eigenvector \newline
+%
+\newcommand{\eval}{\lambda}
+%$\eval$ \tab Eigenvalue \newline
+%
+\newcommand{\canonvec}[1]{\mathbf{e}_{#1}}
+%$\canonvec{i}$ \tab $i$-th canonical basis vector \newline
+%
+%$\canonvec{i}$ \tab $i$-th canonical basis vector \newline
+%
+%
+\newcommand{\onevec}{\mathbf{1}}
+%
+\newcommand{\obs}{\mathbf{x}}
+%
+\newcommand{\obscomp}{{x}}
+%$\obscomp$ \tab An observation \newline
+%
+\newcommand{\mbeq}{\overset{!}{=}}
+%$\mbeq$ \tab Must be equal to \newline
+%
+\newcommand{\neset}{\mathsf{X}}
+%$\neset$ \tab Non-empty set \newline
+%
+\newcommand{\topology}{\mathcal{T}}
+\newcommand{\statespacedim}{Q}
+\newcommand{\manifold}{\mathcal{M}}
+\newcommand{\dynamics}{f}
+\newcommand{\measuref}{m}
+\newcommand{\attractor}{\mathcal{A}}
+\newcommand{\statevec}{\mathbf{s}}
+\newcommand{\attractordim}{\statespacedim_\attractor}
+%$\topology$ \tab A topology \newline
+%
+\newcommand{\preimage}[2]{\textup{preimage}_{#1}\left(#2\right)}
+%$\preimage{f}{\cdot}$ \tab The preimage of a set under f\newline
+%
+\newcommand{\interior}[1]{\textup{interior}\left(#1\right)}
+%$\interior{\cdot}$ \tab The interior of a set \newline
+%
+\newcommand{\mymetric}{m}
+%$\interior{\cdot}$ \tab The interior of a set \newline
+%
+\newcommand{\powerset}[1]{\mathcal{P}\left\{#1\right\}}
+%$\interior{\cdot}$ \tab The interior of a set \newline
+%
+\newcommand{\openball}[2]{\textup{B}_{#1}\left(#2\right)}
+%$\interior{\cdot}$ \tab The interior of a set \newline
+%
+\newcommand{\atlas}{\mathcal{A}}
+%$\atlas$ \tab Atlas (collection of charts) \newline
+%
+\newcommand{\lagrangianfct}{\textup{L}}
+%$\lagrangianfct$ \tab Lagrange function\newline
+%
+\newcommand{\meanvalue}[1]{\mu_{#1}}
+%$\meanvalue{\mathbf{X}}$ \tab Mean of $\mathbf{X}$\newline
+%
+\newcommand{\stddev}[1]{\sigma_{#1}}
+%$\stddev{X}$ \tab Standard deviation of $X$\newline
+%
+\newcommand{\variance}[1]{\textup{Var}\left\{#1\right\}}
+%$\variance{\mathbf{X}}$ \tab Variance of $\mathbf{X}$\newline
+%
+\newcommand{\autocovariance}[1]{c_{#1}}
+%$\autocovariance{k}$ \tab $k$-th autocovariance component\newline
+
+\newcommand{\estimated}[1]{\check{#1}}
+%$\estimated{x}$ \tab Estimated $x$\newline
+%
+\newcommand{\sampleautocorrmat}{\estimated{\mathbf{R}}}
+%$\sampleautocorrmat$ \tab Sample autocorrelation matrix\newline
+%
+\newcommand{\autocorr}[1]{{r}_{#1}}
+%$\autocorr{k}$ \tab $k$-th autocorrelation component\newline
+%
+\newcommand{\autocorrmat}{\mathbf{R}}
+%$\autocorrmat$ \tab Autocorrelation matrix\newline
+%
+\newcommand{\autocorrmatsources}{\autocorrmat_S}
+%
+\newcommand{\circautocorr}[1]{{\estimated{r}}_{#1}}
+%$\circautocorr{k}$ \tab $k$-th circular autocorrelation component\newline
+%
+\newcommand{\periodicautocorr}[1]{{{r}_{#1}}}
+%$\periodicautocorr{k}$ \tab $k$-th component of the periodic autocorrelation \newline
+%
+\newcommand{\powerspectrum}[1]{\hat{r}_{#1}}
+%
+\newcommand{\autocorrvec}{\mathbf{r}}
+%
+\newcommand{\estautocorrvec}{\estimated{\boldsymbol{r}}}
+%
+%
+\newcommand{\powerspectrumvec}{\hat{\mathbf{r}}}
+%
+\newcommand{\periodogramcomp}{\estimated{p}}
+%$\periodogramcomp$ \tab Periodogram \newline
+%
+\newcommand{\periodogramvec}{\mathbf{\periodogramcomp}}
+%$\periodogramvec$ \tab Periodogram \newline
+%
+\newcommand{\lag}{k}
+%$\lag$ \tab Lag (Autocorrelation) \newline
+%
+\newcommand{\crosscorr}[1]{{c}_{#1}}
+%$\crosscorr{\mathbf{X}_1, \mathbf{X}_2}$ \tab Cross correlation of $\mathbf{X}_1$ and $\mathbf{X}_2$\newline
+%
+\newcommand{\totalvariation}[1]{\textup{Var}_\mathsf{t}\left\{#1\right\}}
+%$\totalvariation{\mathbf{x}}$ \tab Total variation of $\mathbf{x}$\newline
+%
+\newcommand{\minml}{\mu}
+%$\minml$ \tab $\min\{\embeddim, \numofembedshifts\}$\newline
+%
+\newcommand{\st}{\textup{~s.t.~}}
+%$\st$ \tab subject to \newline
+%% THOMSONS 6 SPECTRAL CONCENTRATION
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\slepiancomp}{w}
+\newcommand{\slepianwidth}{W}
+\newcommand{\slepianwindow}[1]{\mathbf{\slepiancomp}_{#1}}
+\newcommand{\prolatematrix}{\mathbf{O}}
+\newcommand{\complexprolate}{\mathbf{Q}}
+\newcommand{\complexprosquare}{\mathbf{V}}
+\newcommand{\complexprosquavec}{\mathbf{v}}
+\newcommand{\prolatematcomp}{{o}}
+\newcommand{\complexprocomp}{{q}}
+\newcommand{\thomsonorder}{Q}
+\newcommand{\thomsonorderidx}{q}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\caponf}{\mathbf{w}}
+%% MAXVARFRAMES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\kidx}{l}	% kernel index
+%$\kidx$ \tab Mask index \newline
+%
+\newcommand{\kl}{{L}}
+\newcommand{\kw}{{L}}
+\newcommand{\kleff}{{\kl}_{\mathsf{eff}}}
+%
+\newcommand{\ka}{{\kappa}}
+%
+\newcommand{\trunc}{{\tau}}
+%
+\newcommand{\dilation}{\rho}
+%
+% crap
+\newcommand{\mylocalidx}{k}
+%
+\newcommand{\smk}{\mathbf{g}}
+
+%
+\newcommand{\smkc}{{g}}
+%
+\newcommand{\mask}{\mathbf{M}}
+%
+\newcommand{\maskdimrow}{{\ddim_1}}
+\newcommand{\maskdimcol}{{\ddim_2}}
+\newcommand{\dimoutput}{{K}}
+%
+\newcommand{\lidx}{l}
+%
+\newcommand{\sm}{\mathbf{G}}
+%
+\newcommand{\transfodata}{\mathbf{Y}}
+%
+\newcommand{\mvfembobs}{q}
+\newcommand{\mvfembeddeddatavec}{\mathbf{p}}
+%\newcommand{\embedoperator}{def}
+\newcommand{\mvfembvec}{\mathbf{\mvfembobs}}
+\newcommand{\mvfembmat}{\mathbf{\MakeUppercase{\mvfembobs}}}
+\newcommand{\obstrafo}{\mathbf{y}}
+\newcommand{\obstrafocomp}{{y}}
+\newcommand{\Zmatrix}{\mathbf{Z}}
+\newcommand{\Zvec}{\mathbf{z}}
+\newcommand{\Zcomp}{z}
+\newcommand{\maskobscomp}{m}
+\newcommand{\maskobs}{\boldsymbol{\maskobscomp}}
+\newcommand{\ampspec}{\ftransform{\mathbf{s}}}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% supervsied / LDA
+\newcommand{\classidx}{c}
+\newcommand{\labelveccomp}{c}%\mathfrak
+\newcommand{\labelvec}{\boldsymbol{\labelveccomp}}
+\newcommand{\numclasses}{C}
+\newcommand{\labelindexset}[1]{\mathcal{I}_{#1}}
+\newcommand{\beneathclass}{\mathbf{B}}
+\newcommand{\withinclass}{\mathbf{W}}
+\newcommand{\bcz}{\mathbf{\Zmatrix}_B}
+\newcommand{\wcz}{\mathbf{\Zmatrix}_W}
+\newcommand{\samplemean}[1]{\boldsymbol{\estimated{\meanvalue{}}}_{#1}}
+\newcommand{\ldvecomp}{u}
+\newcommand{\ldvec}{\mathbf{\ldvecomp}}
+\newcommand{\classprior}[1]{\estimated{P}_{#1}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% IMAGE PROCESSGING
+\newcommand{\animage}{\boldsymbol{\mathtt{I}}}
+\newcommand{\numrows}{R}
+\newcommand{\numcols}{C}
+\newcommand{\imkernrow}{\kw_{\numrows}}
+\newcommand{\imkerncol}{\kw_{\numcols}}
+\newcommand{\indexsetimker}{\mathcal{I}_{\smk}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\specreso}{R}
+\newcommand{\numsources}{Q}
+\newcommand{\phase}{\phi}
+\newcommand{\subspace}{\mathcal{U}}
+\newcommand{\signalsubspace}{\subspace_S}
+\newcommand{\noisesubspace}{\subspace_N}
+\newcommand{\myddt}{\textup{d}}
+%
+\newcommand{\overlap}{P}
+%
+\newcommand{\mywindowfct}{\mathbf{w}}
+%
+\newcommand{\fftshift}[1]{\permat^{\myfloor{\sfrac{#1}{2}}}}
+\newcommand{\zeropad}[1]{{#1}'}
+\newcommand{\zeropadp}[1]{{#1}_\mathsf{p}}
+%
+\newcommand{\optimal}[1]{\overset{_{_*}}{{#1}}}
+%
+\newcommand{\myceil}[1]{\left\lceil #1 \right\rceil}
+\newcommand{\myfloor}[1]{\left\lfloor #1 \right\rfloor}
+\newcommand{\nullspace}[1]{\textup{N}\left(#1\right)}
+\newcommand{\columnspace}[1]{\textup{C}\left(#1\right)}
+%
+\thispagestyle{empty}
+\newcommand{\ie}{\textit{i.e.}~}
+\newcommand{\cf}{\textit{cf.}~}
+\newcommand{\Cf}{\textit{Cf.}~}
+\newcommand{\eg}{\textit{e.g.}~}
+\newcommand{\Eg}{\textit{E.g.}~}
+\newcommand{\sic}{[\textit{sic}]}
+\newcommand{\wrt}{w.r.t.~}
+\newcommand{\rotvert}{\rotatebox[origin=c]{90}{$\vert$}}
+\newcommand{\mydB}{\text{\textup{dB}}}
+\newcommand{\halfcycles}{\text{cycles}}
+\newcommand{\myyear}{\text{y}}
+
+\renewcommand{\dim}{\textup{dim}}
+
+\newcommand{\myendofproof}{\hfill\text{${\Box} $}}
+\newcommand{\myendofproofequation}{\hfill\text{$\tag*{\Box} $}}
+
+\newcommand{\textroutine}[1]{\texttt{\textup{\sffamily{#1}}}}
+
+\newcommand{\transpconvstruct}{valid convolution structure}
+\newcommand{\convstruct}{convolution structure}
+
+\newcommand{\mypageref}[1]{page \pageref{#1}}
+\renewcommand{\say}[1]{``{\textit{#1}}''}
+%\section*{Regarding notation \& terminology}
+%Whenever possible we use natural numbers as vector indeces. Though, this in not possible for infinite sequences and their Fourier transform. Most prominently, the autocorrelation is indexed of $\integers$.
+%
+%\begin{mydef}[Matrix diagonals]\label{def:matrixdiag}
+%	The diagonals of a matrix $\mathbf{A}\in\realnumbers^{M\times N}$ are sets of elements $a_{i\matsep j}$ with constant $i -j$. The set of elements with $i -j=0$ is the main diagonal. The operator $\diag{\mathbf{A}}$ is defined as 
+%	\begin{align}\notag
+%		\diag{}: \realnumbers^{M\times N} &\rightarrow \realnumbers^{L}\\
+%						\diag{\mathbf{A}} & \mapsto 
+%						\begin{pmatrix}
+%						a_{1\matsep 1} 	\\
+%						a_{2\matsep 2} 	\\
+%						\vdots			\\
+%						a_{L\matsep L}	\\
+%						\end{pmatrix},
+%	\end{align}
+%	where $L = \min(M,N)$, \ie it extracts the main diagonal.
+%\end{mydef}
+
+
+%\begin{fullwidth}
+%	\subsection*{Linear Algebra}
+%	
+%	$\obs$ \tabto{5cm} A vector (bold lowercase letters)\newline
+%	$[\obs]_k=\obscomp_k$ \tabto{5cm} $k$-th component of $\obs$\newline
+%	$\data$ \tabto{5cm} A matrix (bold capital letters)\newline
+%	$\transpose{\mathbf{X}}$ \tabto{5cm} Transpose of $\mathbf{X}$ \newline
+%	$\hermet{\mathbf{X}}$ \tabto{5cm} Conjugate transpose of $\mathbf{X}$ \newline
+%	$\invers{\mathbf{X}}$ \tabto{5cm} Inverse of $\mathbf{X}$ \newline
+%	$\pinv{\mathbf{X}}$ \tabto{5cm} Pseudoinverse of $\mathbf{X}$\newline
+%	$\rank{\mathbf{X}}$ \tabto{5cm} Rank of $\mathbf{X}$\newline
+%	%	$\det{\mathbf{X}}$ \tabto{5cm} Determinant of $\mathbf{X}$\newline
+%	$\diag{\mathbf{X}}$ \tabto{5cm} Diagonal elements of $\mathbf{X}$ \newline
+%	$\trace{\mathbf{X}}$ \tabto{5cm} Trace of $\mathbf{X}$\newline
+%	$\myspan{\obs_1,\obs_2,\dots}$ \tabto{5cm} Span of a set of vectors, \cref{def:linearspan}\newline
+%	$\norm{\obs}_2$	\tabto{5cm} Euclidean norm of $\obs$, \cref{def:signalenergy} \newline
+%	$\norm{\mathbf{X}}_F$	\tabto{5cm} Frobenius norm of $\mathbf{X}$, \cref{def:fronorm} \newline
+%	$\diagmat$ \tabto{5cm} A Diagonal matrix \newline
+%	$\diagmat_\obs$ \tabto{5cm} Diagonal matrix with $\obs$ on its diagonal $(\diag{\diagmat_\obs} = \obs)$ \newline
+%	$\identity$ \tabto{5cm} The identity matrix \newline
+%	$\identityvec{k}$ \tabto{5cm} $k$-th column of $\identity$\newline
+%	$\zeromat$ \tabto{5cm} Zero matrix or zero vector\newline
+%	$\onevec$ \tabto{5cm} Vector with all elements equal one \newline
+%	$\fmat$ \tabto{5cm} Fourier matrix, \cref{def:fmat} \newline
+%	$\fmode$ \tabto{5cm} Discrete Fourier mode, \cref{def:fouriermodes} \newline
+%
+%\end{fullwidth}
+%
+%\begin{fullwidth}
+%	\subsection*{Probability}
+%	
+%%	$\posrealnumbers$ \tabto{5cm} Positive real numbers \newline
+%	
+%	
+%	$\expectation{x}$ \tabto{5cm} Expectation of $x$ \newline
+%	$\variance{x}$ \tabto{5cm} Variance of $x$ \newline
+%	$\meanvec$ \tabto{5cm} Mean vector \newline
+%%	$\empcovar$ \tabto{5cm} Covariance matrix \newline
+%	$\uniformdistr{a}{b}$ \tabto{5cm} A continuous uniform distribution on the interval $[a, b]$ \newline
+%	$\gaussiandistr{\meanvec}{\covmat}$ \tabto{5cm} A (multivariate) normal distribution with mean $\meanvec$ and (co)variance $\covmat$ \newline
+%	$\dsptssimpleprocessreal{\timeindex}$ \tabto{5cm} A discrete stochastic process, \cref{def:stochproshort} \newline
+%	$\autocorrvec$ \tabto{5cm} Autocorrelation vector, \cref{def:autocorr}\newline
+%	$\powerspectrumvec$ \tabto{5cm} Power spectral density, \cref{def:psd}\newline
+%	$\estimated{x}$ \tabto{5cm} An estimator for x (\eg the sample mean $\estimated{\meanvec}$) \newline
+%	
+%\end{fullwidth}
+%\clearpage
+%	\begin{fullwidth}
+%		\subsection*{Maximum Variance Frames}
+%		$\sm$ \tabto{5cm} Modified circulant matrix, \cref{def:modcirc} \newline
+%		$\smk$ \tabto{5cm} Kernel of a modified circulant matrix \newline
+%		$\smk_k$ \tabto{5cm} $k$-th eigenvector of the scattering matrix $\Zmatrix$ \newline
+%		$\sm_k$ \tabto{5cm} Modified circulant matrix associated to $\smk_k$, \cref{def:modcirc} \newline
+%		$\kl$ \tabto{5cm} Kernel length, \cref{sec:algformofmodcirc} \newline	% kernel width
+%		$\ka$ \tabto{5cm} Stride for $\ka$-circulant, \cref{sec:algformofmodcirc}\newline
+%		$\trunc$ \tabto{5cm} Truncation parameter, \cref{sec:algformofmodcirc}\newline
+%		$\dilation$ \tabto{5cm} Dilation parameter, \cref{sec:algformofmodcirc}\newline
+%		$\mask$ \tabto{5cm} Masking matrix (truncation/stride), \cref{def:mask}\newline
+%		$\permat$ \tabto{5cm} Circular permutation matrix, \cref{def:circmat}\newline
+%		$\mymvf,\mydualmvf$ \tabto{5cm} Maximum Variance Frame and the corresponding dual frame, \cref{def:maximumvarianceframes} \newline
+%		$\Zmatrix$ \tabto{5cm} Scattering matrix, \cref{def:scattermat}\newline
+%		
+%	\end{fullwidth}
+%	
+%\begin{fullwidth}
+%	\subsection*{Miscellaneous}
+%	$\naturals,\realnumbers,\complexnumbers$ \tabto{5cm} Natural, real \& complex numbers \newline
+%	$\complexnr$ \tabto{5cm} Complex number $(\complexnr^2=-1)$ \newline
+%	$\realpart{x}$\tabto{5cm} Real part of $x$ \newline
+%	$\imagpart{x}$\tabto{5cm} Imaginary part of $x$ \newline
+%	$\abs{x}$ \tabto{5cm} Absolute value of $x$ \newline
+%	$\conjugate{x}$ \tabto{5cm} Complex conjugate of $x$ \newline
+%	$\circconv$ \tabto{5cm} Operator for circular convolution, \cref{def:circularconvolution}\newline
+%	$\linconv$ \tabto{5cm} Operator for linear convolution, \cref{def:linearconvolution} \newline
+%	$\hadamard$ \tabto{5cm} Hadamard product\newline
+%	$\kronecker{i}{j}$ \tabto{5cm} Kronecker delta \newline	
+%	$\embedoperator$ \tabto{5cm} Delay embedding operator, \cref{def:delayembedding}\newline
+%	$\diagavgop$ \tabto{5cm} Diagonal averaging operator, \cref{def:diagavg_SSA}\newline
+%	$\ftransform{f},\ftransform{\obs}$ \tabto{5cm} Fourier transform of a function $f$ or a vector $\obs$, \cref{sec:fourieranalysis} \newline
+%	$\freqindex$ \tabto{5cm} Frequency variable \newline
+%	$\timeindex$ \tabto{5cm} Time index \newline
+%	$\sampletime,\samplingfreq$ \tabto{5cm} Sampling interval and frequency, \cref{def:sampling}\newline
+%\end{fullwidth}
+%
+%\subsection*{Abbreviations}
+%\begin{fullwidth}
+%	ACF \tabto{5cm} Autocorrelation function, \cref{def:autocorr} \newline
+%	ARMA model \tabto{5cm} Autoregressive moving-average model, \mypageref{eq:armamodel} \newline
+%	DFT \tabto{5cm} Discrete Fourier transform, \cref{def:dft} \newline
+%	DTFT \tabto{5cm} Discrete-time Fourier transform, \cref{def:dtft} \newline
+%	DPCA \tabto{5cm} Dynamic PCA, \cref{def:DPCA} \newline
+%	FFT \tabto{5cm} Fast Fourier transform, \mypageref{eq:fftfactorization} \newline
+%	KPCA \tabto{5cm} Kernel PCA, \cref{sec:kernelpca} \newline
+%	MA model \tabto{5cm} Moving-average model, \cref{sec:mamodels}\newline
+%	MUSIC \tabto{5cm} Multiple Signal Classification, \cref{def:music}\newline
+%	MVF \tabto{5cm} Maximum Variance Frame, \cref{def:maximumvarianceframes}  \newline
+%	PCA \tabto{5cm} Principal Component Analysis, \cref{def:PCA} \newline	
+%	PSD \tabto{5cm} Power spectral density, \cref{def:psd} \newline
+%	PSDE \tabto{5cm} PSD estimation, \cref{sec:spectralestimation} \newline
+%	SSA \tabto{5cm} Singular Spectrum Analysis, \cref{def:SSA} \newline
+%	SVD \tabto{5cm} Singular Value Decomposition, \cref{def:SVD}\newline
+%\end{fullwidth}

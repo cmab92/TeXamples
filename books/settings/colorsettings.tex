@@ -1,0 +1,49 @@
+% colormaps
+\usepgfplotslibrary{colorbrewer} % cf. https://tikz.dev/pgfplots/libs-colorbrewer
+%\usetikzlibrary{pgfplots.colormaps}
+%\def\mycolorscheme{RdGy}
+%\def\mycolorscheme{Spectral}
+%\def\mycolorscheme{RdYlBu}
+%\def\mycolorscheme{PiYG}
+\def\mycolorscheme{RdBu} % RdBu
+
+\pgfplotsset{colormap/\mycolorscheme-11} 
+
+\def\colorforcurvesi{\mycolorscheme-M}
+\def\colorforcurvesii{\mycolorscheme-K}
+\def\colorforcurvesiii{\mycolorscheme-I}
+\def\colorforcurvesiv{\mycolorscheme-E}
+\def\colorforcurvesv{\mycolorscheme-C}
+\def\cfcA{\mycolorscheme-A}
+\def\cfci{\mycolorscheme-B}
+\def\cfcii{\mycolorscheme-C}
+\def\cfcE{\mycolorscheme-E}
+\def\cfciii{\mycolorscheme-F}
+\def\cfciv{\mycolorscheme-G}
+\def\cfcv{\mycolorscheme-H}
+\def\cfcvi{\mycolorscheme-I}
+\def\cfcvii{\mycolorscheme-J}
+\def\cfcviii{\mycolorscheme-L}
+\def\cfcix{\mycolorscheme-N}
+
+\def\posmatcolor{\mycolorscheme-B}
+\def\negmatcolor{\mycolorscheme-N}
+
+%
+\def\urlcolor{\mycolorscheme-O}
+\def\linkcolor{\mycolorscheme-O}
+\def\citecolor{\mycolorscheme-A}
+
+\gdef\mysidenotetextcolor{\mycolorscheme-N}
+\gdef\mycitationtextcolor{\mycolorscheme-B}
+\gdef\mychaptertitlecolor{\mycolorscheme-O}
+
+\usepackage{hyperref}
+\hypersetup{
+	linkcolor=\linkcolor,
+	citecolor=\citecolor,
+	urlcolor=\urlcolor,
+	colorlinks=true,
+}
+
+\renewcommand\thefootnote{\sffamily\textcolor{\mysidenotetextcolor}{\arabic{footnote}}}

@@ -1,0 +1,57 @@
+
+\setsidenotefont{
+	\sffamily
+	\footnotesize
+	\color{\mysidenotetextcolor}
+}   
+
+\setcaptionfont{
+	\sffamily
+	\footnotesize
+	\color{\mysidenotetextcolor}
+}   
+
+\setmarginnotefont{
+	\sffamily
+	\small
+	\color{\mysidenotetextcolor}
+}   
+
+\setcitationfont{
+	\sffamily
+	\color{\mycitationtextcolor}
+}
+
+\gdef\mysidenotefont{\sffamily\textcolor{\mysidenotetextcolor}}
+
+\def\sectionfont{\sffamily\LARGE}
+
+
+% chapter format
+\titleformat{\chapter}%
+{\huge\sffamily\scshape\color{\mychaptertitlecolor}}% format applied to label+text
+{{\thechapter}\llap}% label
+{1em}% horizontal separation between label and title body
+{}% before the title body
+[]% after the title body
+
+% section format
+\gdef\mysectionfont{\sffamily\Large\color{\mychaptertitlecolor}}
+\titleformat{\section}%
+{\mysectionfont}% !!!!!!!!!! % \itshape % format applied to label+text
+{{\thesection}\llap}% {\llap{\colorbox{white}{\parbox{1.5cm}{\hfill\color{white}\thesection}}}}% label
+{1em}% horizontal separation between label and title body
+{}% before the title body
+[]% after the title body
+
+% subsection format
+\titleformat{\subsection}%
+{\sffamily\large\itshape\color{\mychaptertitlecolor}}%  % 
+{{\thesubsection}\llap}% {\llap{\colorbox{white}{\parbox{1.5cm}{\hfill\color{white}\thesubsection}}}}% label
+{1em}% horizontal separation between label and title body
+{}% before the title body
+[]% after the title body
+
+
+%% alternative fonts
+\newfontface\kitschy{ZapfinoExtraLT-Four} % really fancy
