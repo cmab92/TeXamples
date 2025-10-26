@@ -1,0 +1,44 @@
+
+\begin{tikzpicture}
+	\def\myxmin{0}
+	\def\myxmax{12}
+	\def\myymin{-1.5}
+	\def\sampfreq{1}
+	\def\myymax{1.5}
+	\def\mynsamples{12}
+	\def\sampletimestep{1/\sampfreq}
+	\def\mycolori{\colorforcurvesi}
+	\def\mycolorii{\colorforcurvesv}
+	\def\mycoloriii{\colorforcurvesii}
+	\def\sigfreq{0.125}
+	\def\thefunctionf{cos(deg((\sigfreq)*2*pi*x))}
+	\def\thefunctiong{cos(deg((\sigfreq + 1*\sampfreq)*2*pi*x))}
+	\def\thefunctionh{cos(deg((-\sigfreq + 1*\sampfreq)*2*pi*x))}
+			\begin{axis}[
+				width=\textwidth*0.8,
+				height=5cm,
+				xmin=\myxmin,xmax=\myxmax,
+				ymin=\myymin,ymax=\myymax,	
+				axis lines=center,	
+				legend style={draw=none, at={(1.05,0.5)},anchor=west},
+				xtick=\empty, ytick=\empty, 
+				]
+				\addplot[domain=\myxmin:\myxmax,samples=1000, \mycolori]{\thefunctionf};
+				\addlegendentry{\(f(t)\)}
+				\addplot[domain=\myxmin:\myxmax,samples=1000, \mycolorii]{\thefunctiong};
+				\addlegendentry{\(g(t)\)}
+				\addplot[domain=\myxmin:\myxmax,samples=1000, \mycoloriii]{\thefunctionh};
+				\addlegendentry{\(h(t)\)}
+				\addplot+[only marks, domain=\myxmin:\myxmax,samples=\mynsamples+1, mark color=\mycolori, mark=*, mark options={fill=\mycolori, draw=\mycolori,}]{\thefunctionf};
+				\addlegendentry{\(f(n\sampletime)\)}
+				\addplot+[only marks, domain=\myxmin:\myxmax,samples=\mynsamples+1, mark color=\mycolorii, mark=o, mark options={fill=\mycolorii, draw=\mycolorii,}]{\thefunctiong};
+				\addlegendentry{\(g(n\sampletime)\)}
+				\addplot+[only marks, domain=\myxmin:\myxmax,samples=\mynsamples+1, mark color=\mycoloriii, mark=-, mark options={fill=\mycoloriii, draw=\mycoloriii,}]{\thefunctiong};
+				\addlegendentry{\(h(n\sampletime)\)}
+				\foreach \i in {1, 2,...,\mynsamples}{
+					\addplot[black!25, line width=0.1pt] coordinates {
+						({(\i-1)*\sampletimestep},\myymin) ({(\i-1)*\sampletimestep},\myymax) 
+					};
+				}
+			\end{axis}
+\end{tikzpicture}

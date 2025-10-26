@@ -1,0 +1,60 @@
+An natural point to start using pgfplots is the axis-environment. We begin with the following simple example, which generates \cref{fig:simplepgfexample1}.
+
+\verbatiminput{../src/figures/simplepgfexample1.tex}
+
+\begin{figure}[h]
+	\centering
+	\input{../src/figures/simplepgfexample1.tex}
+	\caption{This is fine for a start.}
+	\label{fig:simplepgfexample1}
+\end{figure}
+\clearpage
+Of course, we still want to improve this in many ways:
+
+%\verbatiminput{../src/figures/simplepgfexample2.tex}
+
+\begin{figure}[h]
+	\centering
+	\input{../src/figures/simplepgfexample2.tex}
+	\caption{This one is a little more sophisticated.}
+	\label{fig:simplepgfexample2}
+\end{figure}
+
+Now lets go for several functions:
+
+%\verbatiminput{../src/figures/simplepgfexample3.tex}
+
+\begin{figure*}[h]
+\centering
+\input{../src/figures/simplepgfexample3.tex}
+\caption{This one is a little more sophisticated.}
+\label{fig:simplepgfexample3}
+\end{figure*}
+\clearpage
+Regarding marks and axis and grids see \cref{fig:discretization}.
+
+\begin{figure*}
+	\centering
+	\input{../src/figures/continuoustodiscrete.tex}
+	\caption{A visual overview about all pairings of discretization in time (sampling) and value (quantization).}\label{fig:discretization}
+\end{figure*}
+\clearpage
+
+We consider \cref{fig:sampling} simply because it fits into the context of \cref{fig:discretization}.
+
+
+\begin{myexample}[Aliasing]\label{exa:sampling}
+	Let $f_0 = 0.125$. \cref{fig:sampling} shows three different signals
+	\[
+	\displaystyle f(t) = \cos(2\pi t f_0),\quad
+	g(t) = \cos(2.5\pi t),\quad
+	h(t) = \cos(1.75\pi t)
+	\]
+	 sampled with sampling frequency \(\samplingfreq=1\), \ie \(\samplingfreq = 1 = {1}/\sampletime\). $g$ and $h$ correspond to $\samplingfreq \pm f_0$.
+\end{myexample}
+
+\begin{figure*}
+	\centering
+	\input{../src/figures/sampling.tex}
+	\caption{\Cf \cref{exa:sampling}.}\label{fig:sampling}
+\end{figure*}

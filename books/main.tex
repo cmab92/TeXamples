@@ -17,7 +17,7 @@ nobib, % custom references
 
 \usepackage{fontspec} % e.g. using different fonts
 \usepackage{pgfplots} % :)
-\usepackage{amsmath,amssymb,amsfonts,amsthm,mathrsfs,mathtools} % Regarding equstions
+\usepackage{amsmath,amssymb,amsfonts,amsthm,mathrsfs,mathtools,xfrac} % Regarding equations
 \usepackage[utf8]{luainputenc}	% LuaLaTex!
 \usepackage[capitalize,nameinlink,noabbrev]{cleveref} % simplifies \ref usage and improves formatting
 \usepackage[framemethod=tikz]{mdframed} % boxes (e.g. for theorems, definitions, etc.)
@@ -31,7 +31,8 @@ nobib, % custom references
 \usepackage{array,readarray}	% read arrays
 \usepackage{siunitx}	% ...
 \usepackage{epigraph}	% just for fun
-\usepackage{fourier}
+\usepackage{fouriernc}	% libertine eulervm
+\usepackage{verbatim} % for \verbatiminput
 
 %% Language
 \usepackage[ngerman,english]{babel} % mainly for correct word-breaking (the last-mentioned is dominant, e.g. Contents instead of Inhaltsverzeichnis)
@@ -88,6 +89,8 @@ nobib, % custom references
 	
 	\chapter{Introduction}\label{sec:introduction}
 		\input{../src/texts/introduction.tex}
+		\section{The axis-environment}
+			\input{../src/texts/axisenvironment.tex}
 
 	\chapter[Quotes \& References]{Quotations, Citations and \\ References of All Kinds}
 		\input{../src/texts/quotesreferences.tex}

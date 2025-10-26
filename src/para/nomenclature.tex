@@ -1,25 +1,46 @@
 \section*{Nomenclature}\label{nomenclature}
 \thispagestyle{empty}
-
+\sffamily
 
 % As a start:
 \def\mylhypertarget{rkhsnomen}
 \newcommand{\hilbertspace}{\hypersetup{linkcolor=\mymathcolor}\hyperlink{\mylhypertarget}{\mathcal{H}}}%
 {$\hilbertspace$ \myltab \hypertarget{\mylhypertarget}{Hilbert space of functions} \par}
 
-\def\mylhypertarget{eulernomen}
-\newcommand{\euler}{\hypersetup{linkcolor=\mymathcolor}\hyperlink{eulernomen}{\text{e}}}%
-{$\euler$ \myltab \hypertarget{\mylhypertarget}{Euler's number (mathematical constant)} \par}
-
-\def\mylhypertarget{complexnrnomen}
-\newcommand{\complexunit}{\hypersetup{linkcolor=\mymathcolor}\hyperlink{\mylhypertarget}{\mathfrak{i}}}%
-{$\complexunit$ \myltab \hypertarget{\mylhypertarget}{Complex unit ($\complexunit^2=-1$)} \par}
-
 % an easier version would be:
 %\newcommand{\hilbertspace}{\mathcal{H}%
-%{$\hilbertspace$ \tab Hilbert space of functions \par}
+	%{$\hilbertspace$ \tab Hilbert space of functions \par}
+
+\def\mylhypertarget{eulernomen}
+\newcommand{\euler}{\hypersetup{linkcolor=\mymathcolor}\hyperlink{eulernomen}{\text{e}}}%
+{\normalfont$\euler$ \sffamily\myltab \hypertarget{\mylhypertarget}{Euler's number (mathematical constant)} \par}
+
+\def\mylhypertarget{complexnrnomen}
+\newcommand{\complexunit}{\hypersetup{linkcolor=\mymathcolor}\hyperlink{\mylhypertarget}{\imath}}%
+{$\complexunit$ \myltab \hypertarget{\mylhypertarget}{Complex unit ($\complexunit^2=-1$)} \par}
+
+\def\mylhypertarget{realnumbersnomen}
+\newcommand{\realnumbers}{\hypersetup{linkcolor=\mymathcolor}\hyperlink{\mylhypertarget}{\mathbb{R}}}%
+{$\realnumbers$ \myltab \hypertarget{\mylhypertarget}{Real numbers} \par}
+
+\def\mylhypertarget{integersnomen}
+\newcommand{\integers}{\hypersetup{linkcolor=\mymathcolor}\hyperlink{\mylhypertarget}{\mathbb{N}}}%
+{$\integers$ \myltab \hypertarget{\mylhypertarget}{Integers} \par}
+
+\def\mylhypertarget{sampletimenomen}
+\newcommand{\sampletime}{\hypersetup{linkcolor=\mymathcolor}\hyperlink{\mylhypertarget}{{\tau_{s}}}}%
+{$\sampletime$ \myltab \hypertarget{\mylhypertarget}{Sampling interval} \par}
+
+\def\mylhypertarget{samplefreqnomen}
+\newcommand{\samplingfreq}{\hypersetup{linkcolor=\mymathcolor}\hyperlink{\mylhypertarget}{{f_{s}}}}%
+{$\samplingfreq$ \myltab \hypertarget{\mylhypertarget}{Sampling frequency} \par}
+
+\def\mylhypertarget{quantizenomen}
+\newcommand{\quantizestep}{\hypersetup{linkcolor=\mymathcolor}\hyperlink{\mylhypertarget}{{\mathfrak{Q}}}}%
+{$\quantizestep$ \myltab \hypertarget{\mylhypertarget}{Quantization step} \par}
 
 \newcommand{\myendofproof}{\hfill\text{${\Box} $}}
 \newcommand{\myendofproofequation}{\hfill\text{$\tag*{\Box} $}}
 
+\normalfont
 \cleardoublepage

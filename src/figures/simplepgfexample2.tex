@@ -1,0 +1,17 @@
+\begin{tikzpicture}
+	\begin{axis}[
+		axis lines=center,
+		width=\textwidth, height=\textwidth/\goldenratio,
+		xlabel=$x$, ylabel={$f(x)$},
+		grid=both,
+		ymax=1.1,
+		ymin=-1.1,
+		]
+		\addplot[
+			domain=-3.2:3.2,
+			samples=101, 
+			line width=3,
+			\colorforcurvesi]
+			{exp(-x^2)*sin(deg(4*x))};
+	\end{axis}
+\end{tikzpicture}
