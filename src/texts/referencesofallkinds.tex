@@ -1,4 +1,4 @@
-The basic structures for citations, references, and the like are defined in the following files:
+The basic structures for citations\index{citation}, references\index{references}, and the like are defined in the following files:
 \begin{itemize}
 	\item \texttt{settings/colorsettings.tex} \\ 
 	Among other things, this file defines the colors for all the different types of references. For example, this reference to \cref{sec:introduction} has the color \linebreak \verb|\linkcolor| (\cf \cref{fig:linkcolor}) due to:
@@ -47,9 +47,10 @@ The basic structures for citations, references, and the like are defined in the 
 		\bibliographystyle{plainnat}
 		\bibliography{../src/para/references}
 	\end{verbatim}
-	Notably, \emph{before} using any literature-reference use:\\
-	\verb|\bibinput{../src/para/references}|
+	Notably, \emph{before} using any literature-reference use\\
+	\verb|\bibinput{../src/para/references}|\\
+	within the \verb|document|.
 	
 \end{itemize}
 
-So far, so good. Let’s turn to the next topic: citations.
+So far, so good. Let’s turn to the next topic: citations. 

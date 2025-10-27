@@ -1,5 +1,14 @@
 \epigraph{I would prefer not to [...]}{\citesay{melville1980bartleby}}
 
-Without some general background and an introduction to the basic concepts, such a course can hardly get started. And indeed, it makes sense to first look at the tools we’ll be using here in a broader context. So, let's go \emoji{nerd-face}
+Without some general background and an introduction to the basic concepts, such a course can hardly get started. And indeed, it makes sense to first look at the tools we’ll be using here in a broader context. 
+
+So, let's go \emoji{nerd-face}
 
 \newthought{In medias res.} \mypgf\footnote{\url{https://ctan.org/pkg/pgf}}~ stands for \mypgflong~ and its a low-level graphics engine providing drawing primitives. TikZ\footnote{\url{https://pgf-tikz.github.io/pgf/pgfmanual.pdf}} is a high-level interface to PGF, which allows more user-friendly commands. Tikz on its own is already a really powerful tool. However, on top of TikZ, there is another abstraction specifically for \emph{scientific plotting}: PGFPlots. Before we face the over 500-pages \href{https://pgfplots.sourceforge.net/pgfplots.pdf}{documentation} let’s first pay a little tribute to the developer, Christian Feuersänger! He has also published other TeX-related material, such as a concise \href{https://ins.uni-bonn.de/media/public/staff/feuersaenger/MeineKurzReferenz.pdf}{overview} of important commands.
+
+\newthought{This document} is based on the \verb|tufte-book| documentclass with several small adjustments. All the source files are available in the corresponding \href{https://github.com/cmab92/TeXamples}{git repo}. I recommend LuaLaTeX as default compiler\index{Compiler}
+
+{\centering \verb|lualatex -synctex=1 -interaction=nonstopmode %.tex| \par}
+
+and TeXstudio as environment\index{Environment (LaTeX)}. The following content is a collection of examples and is meant to be sort of a reference book. 
+

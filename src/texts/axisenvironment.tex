@@ -1,4 +1,4 @@
-An natural point to start using pgfplots is the axis-environment. We begin with the following simple example, which generates \cref{fig:simplepgfexample1}.
+An natural point to start using pgfplots is the axis-environment\index{axis}. We begin with the following simple example, which generates \cref{fig:simplepgfexample1}.
 
 \verbatiminput{../src/figures/simplepgfexample1.tex}
 
@@ -8,7 +8,6 @@ An natural point to start using pgfplots is the axis-environment. We begin with 
 	\caption{This is fine for a start.}
 	\label{fig:simplepgfexample1}
 \end{figure}
-\clearpage
 Of course, we still want to improve this in many ways:
 
 %\verbatiminput{../src/figures/simplepgfexample2.tex}
@@ -30,17 +29,42 @@ Now lets go for several functions:
 \caption{This one is a little more sophisticated.}
 \label{fig:simplepgfexample3}
 \end{figure*}
-\clearpage
-Regarding marks and axis and grids see \cref{fig:discretization}.
+
+A very powerful tool for dealing with more complex figures are \verb|foreach|-loops\index{for loops}. For example, these may be used to plot families of curves as shown in \cref{fig:simplepgfexample4}. Some smaller adjustments (opacity\index{opcaity} and a legend\index{axis!legend}) are shown in \cref{fig:simplepgfexample5,fig:simplepgfexample6}. These figures are based on \verb|edef| (expanded definition).\footnote{There is a \href{https://tex.stackexchange.com/questions/17638/pgfplots-foreach-equivalent-to-tikzs-with-multiple-variables-separated-by-a-sla}{\url{tex.stackexchange}} post on that.}
+
+\begin{figure*}[h]
+	\centering
+	\input{../src/figures/simplepgfexample4.tex}
+	\caption{A family of modulated Gaussian curves.}
+	\label{fig:simplepgfexample4}
+\end{figure*}
+
+\begin{figure*}[h]
+	\centering
+	\input{../src/figures/simplepgfexample5.tex}
+	\caption{Now using opacity ...}
+	\label{fig:simplepgfexample5}
+\end{figure*}
+
+\begin{figure*}[h]
+	\centering
+	\input{../src/figures/simplepgfexample6.tex}
+	\caption{... and a legend.}
+	\label{fig:simplepgfexample6}
+\end{figure*}
+
+
+
+Regarding marks\index{axis!marks} and axis (and hand-crafted grids\index{axis!grid}) see \cref{fig:discretization}.
 
 \begin{figure*}
 	\centering
 	\input{../src/figures/continuoustodiscrete.tex}
-	\caption{A visual overview about all pairings of discretization in time (sampling) and value (quantization).}\label{fig:discretization}
+	\caption{A visual overview about all pairings of discretization in time (sampling) and value (quantization, by slight abuse of floor-notation).}\label{fig:discretization}
 \end{figure*}
-\clearpage
 
-We consider \cref{fig:sampling} simply because it fits into the context of \cref{fig:discretization}.
+
+Moreover, we provide \cref{fig:sampling} simply because it fits into the context of \cref{fig:discretization} (see \cref{exa:sampling}).
 
 
 \begin{myexample}[Aliasing]\label{exa:sampling}

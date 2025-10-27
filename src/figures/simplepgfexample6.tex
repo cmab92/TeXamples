@@ -1,0 +1,48 @@
+\begin{tikzpicture}
+	\def\mynumcurves{11}
+	\begin{axis}[
+		axis lines=center,
+		width=\textwidth, height=\textwidth/\goldenratio,
+		xlabel=$x$, ylabel={$y$},
+%		grid=both,
+		ymax=1.1,
+		ymin=-1.1,
+		legend style={draw=none,anchor=north east, at={(1,1)}},
+		]
+		%% generate legends (this is done first, otherwise entries will be overwritten)
+		\pgfmathsetmacro{\halfinterval}{int(\mynumcurves/2)}
+		\foreach [evaluate=\i as \mix using (\i-1)*100/(\mynumcurves)] \i in {1,\halfinterval,\mynumcurves}{
+			\pgfmathsetmacro{\freq}{(100-\mix)/15}
+			\edef\temp{%  \edef\temp everything is expanded, except prefixed with \noexpand 
+				\noexpand
+				\addlegendimage{
+					line width=1+\mix/100*2,
+					color=\colorforcurvesv!\mix!\colorforcurvesi,
+					opacity=\mix/100*0.95+0.05,
+				}
+				\noexpand\ifthenelse
+				{ % condition
+					\i=\halfinterval
+				}
+				{ % then clause
+					\noexpand\addlegendentry{$\vdots$}
+				}
+				{% else
+					\noexpand\addlegendentry{$f_{\i}(x) = e^{-x^2}\sin(\noexpand\pgfmathprintnumber{\freq}\,x)$}
+				}   				
+			}\temp
+		}
+		%% generate the plots
+		\foreach [evaluate=\i as \mix using (\i-1)*100/(\mynumcurves)] \i in {1, 2,...,\mynumcurves}{
+			\edef\temp{%  \edef\temp everything is expanded, except prefixed with \noexpand 
+				\noexpand\addplot[
+				domain=-3.2:3.2,
+				samples=201, 
+				opacity=\mix/100*0.95+0.05,
+				line width=1+\mix/100*2,
+				color=\colorforcurvesv!\mix!\colorforcurvesi]
+				{exp(-x^2)*sin(deg((100-\mix)/15*x))};
+			}\temp
+		}
+	\end{axis}
+\end{tikzpicture}
