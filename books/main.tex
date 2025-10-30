@@ -31,7 +31,7 @@ nobib, % custom references
 \usepackage{array,readarray}	% read arrays
 \usepackage{siunitx}	% ...
 \usepackage{epigraph}	% just for fun
-\usepackage{fouriernc}	% libertine eulervm
+\usepackage{fourier}	% libertine eulervm
 \usepackage{verbatim} % for \verbatiminput
 
 
@@ -52,6 +52,10 @@ nobib, % custom references
 \usepackage{imakeidx}       % index
 % Create index using makeindex
 \makeindex[intoc, columns=2, title=Index] % an index with hyperlink is a little more complicated. Yet, Imo, this isnt need, as an index is not needed in a PDF (use ctrl+f)...
+
+%% lettrine & fonts
+%\usepackage{fontspec}
+\usepackage{lettrine}
 
 %% Regarding pgfplots and tikz
 %\usetikzlibrary{external}
@@ -96,14 +100,19 @@ nobib, % custom references
 	\chapter{Introduction}\label{sec:introduction}
 		\input{../src/texts/introduction.tex}
 		
-	\chapter{TikZ and PGFplots\,--\,Basics}
-		\section{The axis-environment}
-			\input{../src/texts/axisenvironment.tex}
+%	\chapter{TikZ and PGFplots\,--\,Basics}
+%		\section{The axis-environment}
+%			\input{../src/texts/axisenvironment.tex}
 
-	\chapter[Quotes \& References]{Quotations, Citations and \\ References of All Kinds}
+	\chapter[Miscellaneous]{Miscellaneous}
 		\input{../src/texts/quotesreferences.tex}
+		\cleardoublepage
 		\section[References]{References of All Kinds}
-		\input{../src/texts/referencesofallkinds.tex}
+			\input{../src/texts/referencesofallkinds.tex}
+			\cleardoublepage
+		\section[Fonts]{Digression}
+			\input{../src/texts/positioningoffigures.tex}
+			\clearpage
 		\section[The Cost of Ink?]{The Cost of Ink?}
 			\input{../src/texts/costofink.tex}
 	\chapter[Anything Goes]{Anything Goes}
