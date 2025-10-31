@@ -8,10 +8,90 @@ An natural point to start using pgfplots is the axis-environment\index{axis}. We
 	\caption{This is fine for a start.}
 	\label{fig:simplepgfexample1}
 \end{figure}
-Of course, we still want to improve this in many ways:
+Of course, we still want to improve this in many ways. We begin with \emph{global} versus \emph{local} styles.
+
+\newthought{Global styles} are default in the sense that they apply to all axes and plots in the document (unless overridden). Thus, the following 
+\begin{verbatim}
+	\pgfplotsset{
+		every axis/.style = {
+			axis lines=center,
+			width=\textwidth, height=\textwidth/\goldenratio,
+			grid=both,
+		},
+		every axis plot/.style = {
+    		ultra thick, mark=*
+		}
+	}
+\end{verbatim}
+
+\pgfplotsset{
+	every axis/.style = {
+		axis lines=center,
+		width=\textwidth, height=\textwidth/\goldenratio,
+		grid=both,
+	},
+	every axis plot/.style = {
+		ultra thick, mark=*
+	}
+}
+
+makes \cref{fig:simplepgfexample1} looking like \cref{fig:simplepgfexample1withdefault}.
+
+\begin{figure}[h]
+	\centering
+	\input{../src/figures/simplepgfexample1.tex}
+	\caption{Same as \cref{fig:simplepgfexample1} but with global styles.}
+	\label{fig:simplepgfexample1withdefault}
+\end{figure}
+
+\newthought{Cycle lists} can be pretty handy:
+
+\begin{verbatim}
+	\pgfplotsset{
+		cycle list={
+			{\colorforcurvesi, thick},
+			{\colorforcurvesii, thick},
+			{\colorforcurvesiii, thick},
+			{\colorforcurvesiv, thick},
+			{\colorforcurvesv, thick},
+			{\colorforcurvesi, dashed},
+			{\colorforcurvesii, dashed},
+			{\colorforcurvesiii, dashed},
+			{\colorforcurvesiv, dashed},
+			{\colorforcurvesv, dashed},
+		}
+	}
+\end{verbatim}
+
+\begin{figure}[h]
+	\centering
+	\input{../src/figures/simplepgfexample1.tex}
+	\caption{Same as \cref{fig:simplepgfexample1cycle} with more graphs to show cycle list.}
+	\label{fig:simplepgfexample1withdefault}
+\end{figure}
+
+\pgfplotsset{
+	cycle list={
+		{\colorforcurvesi, thick},
+		{\colorforcurvesii, thick},
+		{\colorforcurvesiii, thick},
+		{\colorforcurvesiv, thick},
+		{\colorforcurvesv, thick},
+		{\colorforcurvesi, dashed},
+		{\colorforcurvesii, dashed},
+		{\colorforcurvesiii, dashed},
+		{\colorforcurvesiv, dashed},
+		{\colorforcurvesv, dashed},
+	}
+}
+
+
+
+Local styles are applied inside a specific axis or \verb*|\addplot| and override global settings.
 
 %\verbatiminput{../src/figures/simplepgfexample2.tex}
 
+\tikzsetnextfilename{simplepgfexample2}
 \begin{figure}[h]
 	\centering
 	\input{../src/figures/simplepgfexample2.tex}
@@ -23,62 +103,10 @@ Now lets go for several functions:
 
 %\verbatiminput{../src/figures/simplepgfexample3.tex}
 
-\begin{figure*}[h]
-\centering
-\input{../src/figures/simplepgfexample3.tex}
-\caption{This one is a little more sophisticated.}
-\label{fig:simplepgfexample3}
-\end{figure*}
-
-A very powerful tool for dealing with more complex figures are \verb|foreach|-loops\index{for loops}. For example, these may be used to plot families of curves as shown in \cref{fig:simplepgfexample4}. Some smaller adjustments (opacity\index{opcaity} and a legend\index{axis!legend}) are shown in \cref{fig:simplepgfexample5,fig:simplepgfexample6}. These figures are based on \verb|edef| (expanded definition).\footnote{There is a \href{https://tex.stackexchange.com/questions/17638/pgfplots-foreach-equivalent-to-tikzs-with-multiple-variables-separated-by-a-sla}{\url{tex.stackexchange}} post on that.}
-
+\tikzsetnextfilename{simplepgfexample3}
 \begin{figure*}[h]
 	\centering
-	\input{../src/figures/simplepgfexample4.tex}
-	\caption{A family of modulated Gaussian curves.}
-	\label{fig:simplepgfexample4}
-\end{figure*}
-
-\begin{figure*}[h]
-	\centering
-	\input{../src/figures/simplepgfexample5.tex}
-	\caption{Now using opacity ...}
-	\label{fig:simplepgfexample5}
-\end{figure*}
-
-\begin{figure*}[h]
-	\centering
-	\input{../src/figures/simplepgfexample6.tex}
-	\caption{... and a legend.}
-	\label{fig:simplepgfexample6}
-\end{figure*}
-
-
-
-Regarding marks\index{axis!marks} and axis (and hand-crafted grids\index{axis!grid}) see \cref{fig:discretization}.
-
-\begin{figure*}
-	\centering
-	\input{../src/figures/continuoustodiscrete.tex}
-	\caption{A visual overview about all pairings of discretization in time (sampling) and value (quantization, by slight abuse of floor-notation).}\label{fig:discretization}
-\end{figure*}
-
-
-Moreover, we provide \cref{fig:sampling} simply because it fits into the context of \cref{fig:discretization} (see \cref{exa:sampling}).
-
-
-\begin{myexample}[Aliasing]\label{exa:sampling}
-	Let $f_0 = 0.125$. \cref{fig:sampling} shows three different signals
-	\[
-	\displaystyle f(t) = \cos(2\pi t f_0),\quad
-	g(t) = \cos(2.5\pi t),\quad
-	h(t) = \cos(1.75\pi t)
-	\]
-	 sampled with sampling frequency \(\samplingfreq=1\), \ie \(\samplingfreq = 1 = {1}/\sampletime\). $g$ and $h$ correspond to $\samplingfreq \pm f_0$.
-\end{myexample}
-
-\begin{figure*}
-	\centering
-	\input{../src/figures/sampling.tex}
-	\caption{\Cf \cref{exa:sampling}.}\label{fig:sampling}
+	\input{../src/figures/simplepgfexample3.tex}
+	\caption{This one is a little more sophisticated.}
+	\label{fig:simplepgfexample3}
 \end{figure*}

@@ -1,3 +1,62 @@
 \epigraph{Die wissenschaftliche Ausbildung [...] simplifiziert die \frqq Wissenschaft\flqq, indem sie die Akteure simplifiziert.}{\citesay{feyerabend1986wider}}
 
 We don’t want to be accused of that! Instead, let’s take this statement as an excuse to dive into the \say{fun} of \verb|pgfplots|... \emoji{woozy-face}
+
+
+A very powerful tool for dealing with more complex figures are \verb|foreach|-loops\index{for loops}. For example, these may be used to plot families of curves as shown in \cref{fig:simplepgfexample4}. Some smaller adjustments (opacity\index{opcaity} and a legend\index{axis!legend}) are shown in \cref{fig:simplepgfexample5,fig:simplepgfexample6}. These figures are based on \verb|edef| (expanded definition).\footnote{There is a \href{https://tex.stackexchange.com/questions/17638/pgfplots-foreach-equivalent-to-tikzs-with-multiple-variables-separated-by-a-sla}{\url{tex.stackexchange}} post on that.}
+
+\tikzsetnextfilename{simplepgfexample4}
+\begin{figure*}[h]
+	\centering
+	\input{../src/figures/simplepgfexample4.tex}
+	\caption{A family of modulated Gaussian curves.}
+	\label{fig:simplepgfexample4}
+\end{figure*}
+
+\tikzsetnextfilename{simplepgfexample5}
+\begin{figure*}[h]
+	\centering
+	\input{../src/figures/simplepgfexample5.tex}
+	\caption{Now using opacity ...}
+	\label{fig:simplepgfexample5}
+\end{figure*}
+
+\tikzsetnextfilename{simplepgfexample6}
+\begin{figure*}[h]
+	\centering
+	\input{../src/figures/simplepgfexample6.tex}
+	\caption{... and a legend.}
+	\label{fig:simplepgfexample6}
+\end{figure*}
+
+
+
+Regarding marks\index{axis!marks} and axis (and hand-crafted grids\index{axis!grid}) see \cref{fig:discretization}.
+
+\tikzsetnextfilename{discretization}
+\begin{figure*}
+	\centering
+	\input{../src/figures/continuoustodiscrete.tex}
+	\caption{A visual overview about all pairings of discretization in time (sampling) and value (quantization, by slight abuse of floor-notation).}\label{fig:discretization}
+\end{figure*}
+
+
+Moreover, we provide \cref{fig:sampling} simply because it fits into the context of \cref{fig:discretization} (see \cref{exa:sampling}).
+
+
+\begin{myexample}[Aliasing]\label{exa:sampling}
+	Let $f_0 = 0.125$. \cref{fig:sampling} shows three different signals
+	\[
+	\displaystyle f(t) = \cos(2\pi t f_0),\quad
+	g(t) = \cos(2.5\pi t),\quad
+	h(t) = \cos(1.75\pi t)
+	\]
+	sampled with sampling frequency \(\samplingfreq=1\), \ie \(\samplingfreq = 1 = {1}/\sampletime\). $g$ and $h$ correspond to $\samplingfreq \pm f_0$.
+\end{myexample}
+
+\tikzsetnextfilename{sampling}
+\begin{figure*}
+	\centering
+	\input{../src/figures/sampling.tex}
+	\caption{\Cf \cref{exa:sampling}.}\label{fig:sampling}
+\end{figure*}

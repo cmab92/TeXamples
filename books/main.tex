@@ -58,8 +58,10 @@ nobib, % custom references
 \usepackage{lettrine}
 
 %% Regarding pgfplots and tikz
-%\usetikzlibrary{external}
-%\tikzexternalize[prefix=tikz/]
+\usetikzlibrary{external}
+\tikzexternalize[prefix=tikz/]
+\tikzset{external/only named}
+
 \usetikzlibrary{calc,arrows,arrows.meta,angles,quotes,plotmarks,fadings,shapes,spy,mindmap,backgrounds}
 \usepgfplotslibrary{colorbrewer,fillbetween}
 \pgfplotsset{compat=newest}
@@ -100,9 +102,9 @@ nobib, % custom references
 	\chapter{Introduction}\label{sec:introduction}
 		\input{../src/texts/introduction.tex}
 		
-%	\chapter{TikZ and PGFplots\,--\,Basics}
-%		\section{The axis-environment}
-%			\input{../src/texts/axisenvironment.tex}
+	\chapter{TikZ and PGFplots\,--\,Basics}
+		\section{The axis-environment}
+			\input{../src/texts/axisenvironment.tex}
 
 	\chapter[Miscellaneous]{Miscellaneous}
 		\input{../src/texts/quotesreferences.tex}
